@@ -1,0 +1,55 @@
+<%= form_with(model: recipe, local: true) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, "カクテル名" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :alcohol_strength, "アルコール度数" %>
+    <%= form.select :alcohol_strength, Recipe.alcohol_strengths.keys.map { |w| [w.humanize, w] }, { prompt: "選択してください" }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :difficulty_id, "難易度" %>
+    <%= form.collection_select :difficulty_id, @difficulties, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :flavor_id, "フレーバー" %>
+    <%= form.collection_select :flavor_id, Flavor.all, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :base_liquor_id, "ベースリキュール" %>
+    <%= form.collection_select :base_liquor_id, @base_liquors, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ingredient_ids, "副材料" %>
+    <%= form.collection_check_boxes :ingredient_ids, @ingredients, :id, :name do |b| %>
+      <div class="form-check">
+        <%= b.check_box %>
+        <%= b.label(class: "form-check-label") %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :procedure, "作り方" %>
+    <%= form.text_area :procedure, class: "form-control", rows: 4 %>
+  </div>
+
+  <%= form.submit "投稿する", class: "btn btn-primary" %>
+<% end %>
