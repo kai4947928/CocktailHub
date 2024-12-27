@@ -10,9 +10,7 @@
             <strong>難易度:</strong> <%= recipe.difficulty.name %><br>
             <strong>ベース:</strong> <%= recipe.base_liquor.name %><br>
             <strong>副材料:</strong>
-            <% recipe.ingredients.each do |ingredient, index| %>
-              <%= ingredient.name %><%= ' + ' unless index == recipe.ingredients.length - 1 %>
-            <% end %>
+            <%= recipe.ingredients.map(&:name).join(' + ') %>
           </p>
         </div>
       </div>
