@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h1><%= @recipe.name %>の詳細</h1>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">カクテル名: <%= @recipe.name %></h5>
+      <p class="card-text">
+        <strong>アルコール度数:</strong> <%= @recipe.alcohol_strength %><br>
+        <strong>難易度:</strong> <%= @recipe.difficulty.name %><br>
+        <strong>ベース:</strong> <%= @recipe.base_liquor.name %><br>
+
+        <strong>副材料:</strong>
+        <% @recipe.ingredients.each_with_index do |ingredient, index| %>
+          <%= ingredient.name %><%= ' + ' unless index == @recipe.ingredients.length - 1 %>
+        <% end %>
+
+        <br><strong>手順:</strong>
+        <p><%= @recipe.procedure %></p>
+
+        <% if @recipe.flavor.present? %>
+          <br><strong>フレーバー:</strong> <%= @recipe.flavor.name %>
+        <% end %>
+      </p>
+    </div>
+  </div>
