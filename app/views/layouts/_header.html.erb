@@ -17,6 +17,9 @@
 
         <% if user_signed_in? %> <!-- ユーザーがログインしている場合 -->
           <li class="nav-item">
+            <%= link_to '自分のカクテル一覧', my_recipes_recipes_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
             <%= link_to 'My Account', edit_user_registration_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
