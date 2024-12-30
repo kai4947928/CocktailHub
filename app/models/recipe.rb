@@ -8,5 +8,9 @@ class Recipe < ApplicationRecord
   belongs_to :parent_recipe, class_name: 'Recipe', optional: true
   has_many :child_recipes, class_name: 'Recipe', foreign_key: 'parent_recipe_id'
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["base_liquor_id", "difficulty_id"]
+  end
+
   enum alcohol_strength: { weak: 0, medium: 1, strong: 2 }
 end

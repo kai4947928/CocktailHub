@@ -1,19 +1,26 @@
+<%= render 'search_form'%>
 <h1>公式カクテル一覧</h1>
 
-<% @recipes.each do |recipe| %>
-  <div class="col-md-4">
-    <%= link_to recipe_path(recipe), class: "card" do %>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><%= recipe.name %></h5>
-          <p class="card-text">
-            <strong>難易度:</strong> <%= recipe.difficulty.name %><br>
-            <strong>ベース:</strong> <%= recipe.base_liquor.name %><br>
-            <strong>副材料:</strong>
-            <%= recipe.ingredients.map(&:name).join(' + ') %>
-          </p>
-        </div>
+<% if @recipes.any? %>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-md-4">
+        <%= link_to recipe_path(recipe), class: "card" do %>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= recipe.name %></h5>
+              <p class="card-text">
+                <strong>難易度:</strong> <%= recipe.difficulty.name %><br>
+                <strong>ベース:</strong> <%= recipe.base_liquor.name %><br>
+                <strong>副材料:</strong>
+                <%= recipe.ingredients.map(&:name).join(' + ') %>
+              </p>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
+<% else %>
+  <p>カクテルが見つかりませんでした。</p>
 <% end %>
