@@ -10,6 +10,10 @@ class RecipesController < ApplicationController
 
   end
 
+  def edit
+    @recipe = current_user.recipes.find(params[:id])
+  end
+
   def new
     @recipe = Recipe.new
     @base_liquors = BaseLiquor.all
@@ -19,9 +23,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    default_user = User.find_by(email: 'user@example.com')
-    if default_user
-      @recipe.user = default_user
+    @recipe.user = current_user
+
       if @recipe.save
         redirect_to @recipe, notice: 'カクテルが投稿されました！'
       else
@@ -31,11 +34,28 @@ class RecipesController < ApplicationController
         @ingredients = Ingredient.all
         render :new
       end
-    else
-      flash[:alert] = "デフォルトユーザーが存在しません。ユーザーを作成してください。"
-      render :new
-    end
   end
+
+    def my_recipes
+      @recipes = user_signed_in? ? current_user.recipes : []
+    end
+
+    def update
+      @recipe = current_user.recipes.find(params[:id])
+
+      if @recipe.update(recipe_params)
+        redirect_to @recipe, notice: 'カクテルが更新されました！'
+      else
+        flash.now[:alert] = "カクテルの更新に失敗しました。"
+        render :edit
+      end
+    end
+
+    def destroy
+      @recipe = current_user.recipes.find(params[:id])
+      @recipe.destroy
+      redirect_to my_recipes_recipes_path, notice: "カクテルが削除されました"
+    end
 
   private
 
@@ -45,5 +65,10 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :alcohol_strength, :flavor_id, :procedure, :difficulty_id, :base_liquor_id, ingredient_ids: [])
+  end
+
+  def correct_user
+    @recipe = current_user.recipes.find_by(id: params[:id])
+    redirect_to recipes_path, alert: '権限がありません。' if @recipe.nil?
   end
 end

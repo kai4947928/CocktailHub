@@ -1,0 +1,25 @@
+<h1>自分のカクテルレシピ一覧</h1>
+
+<% if @recipes.any? %>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= recipe.name %></h5>
+            <p class="card-text">
+              <strong>難易度:</strong> <%= recipe.difficulty.name %><br>
+              <strong>ベース:</strong> <%= recipe.base_liquor.name %><br>
+              <strong>副材料:</strong>
+              <%= recipe.ingredients.map(&:name).join(' + ') %>
+            </p>
+            <%= link_to '編集', edit_recipe_path(recipe), class: 'btn btn-warning' %>
+            <%= button_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>まだカクテルレシピがありません。</p>
+<% end %>
