@@ -1,20 +1,26 @@
 <h1>自分のカクテルレシピ一覧</h1>
 
 <% if @recipes.any? %>
-  <div class="row">
+  <div class="col">
     <% @recipes.each do |recipe| %>
-      <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
+      <div class="col">
+        <div class="card">
           <div class="card-body">
+            <div class="mb-3">
+              <span class="badge <%= 'bg-info' if recipe.difficulty.name == '初級' %>
+                <%= 'bg-success' if recipe.difficulty.name == '中級' %>
+                <%= 'bg-danger' if recipe.difficulty.name == '上級' %> text-light mb-3">
+                難易度: <%= recipe.difficulty.name %>
+              </span>
+            </div>
             <h5 class="card-title"><%= recipe.name %></h5>
             <p class="card-text">
-              <strong>難易度:</strong> <%= recipe.difficulty.name %><br>
-              <strong>ベース:</strong> <%= recipe.base_liquor.name %><br>
-              <strong>副材料:</strong>
-              <%= recipe.ingredients.map(&:name).join(' + ') %>
+              <%= [recipe.base_liquor.name, *recipe.ingredients.map(&:name)].join(' + ') %>
             </p>
-            <%= link_to '編集', edit_recipe_path(recipe), class: 'btn btn-warning' %>
-            <%= button_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+            <div class="d-flex justify-content-end">
+              <%= link_to '編集', edit_recipe_path(recipe), class: 'btn btn-warning' %>
+              <%= button_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+            </div>
           </div>
         </div>
       </div>
