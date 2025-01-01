@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
-      get 'my_recipes'
+      get :my_recipes
+      get :parent_recipe_options
     end
   end
 end
