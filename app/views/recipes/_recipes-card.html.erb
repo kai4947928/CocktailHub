@@ -1,0 +1,17 @@
+<div class="col">
+  <%= link_to recipe_path(recipe), class: "card" do %>
+    <div class="card-body card card-hover">
+      <div class="mb-3">
+        <span class="badge <%= 'bg-info' if recipe.difficulty.name == '初級' %>
+          <%= 'bg-success' if recipe.difficulty.name == '中級' %>
+          <%= 'bg-danger' if recipe.difficulty.name == '上級' %> text-light mb-3">
+          難易度: <%= recipe.difficulty.name %>
+        </span>
+      </div>
+      <h5 class="card-title"><%= recipe.name %></h5>
+      <p class="card-text">
+        <%= [recipe.base_liquor.name, *recipe.ingredients.map(&:name)].join(' + ') %>
+      </p>
+    </div>
+  <% end %>
+</div>
