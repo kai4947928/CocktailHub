@@ -1,5 +1,6 @@
 # サンプルユーザーを作成
-user = User.create!(email: 'user@example.com')
+user = User.create!(email: 'user@example.com', password: 'password123',
+password_confirmation: 'password123')
 
 # サンプルの難易度
 difficulty_easy = Difficulty.create!(name: '初級')
