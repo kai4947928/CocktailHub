@@ -50,7 +50,4 @@ test:
 #
 production:
   <<: *default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  url: <%= ENV['JAWSDB_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
