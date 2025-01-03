@@ -81,3 +81,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem "bootstrap", "~> 5.3"
+
+gem "rails_12factor", "~> 0.0.3"
