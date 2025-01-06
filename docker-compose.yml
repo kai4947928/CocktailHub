@@ -2,17 +2,16 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:8.0
+    image: postgres:16
     platform: linux/amd64
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cocktail_app_development
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      POSTGRES_USER: cocktail_postgres_user
+      POSTGRES_PASSWORD: cocktail_postgres_password
+      POSTGRES_DB: cocktail_hub_development
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
 
   web:
     build: .
@@ -24,7 +23,10 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql2://user:password@db/cocktail_app_development
+      POSTGRES_USER: cocktail_postgres_user
+      POSTGRES_PASSWORD: cocktail_postgres_password
+      POSTGRES_DB: cocktail_hub_development
+      DATABASE_URL: postgres://cocktail_postgres_user:cocktail_postgres_password@db/cocktail_hub_development
 
 volumes:
-  mysql-data:
+  postgres-data:
