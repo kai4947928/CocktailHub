@@ -9,9 +9,6 @@ gem "rails", "~> 7.0.6"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use mysql as the database for Active Record
-gem "mysql2", "~> 0.5"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -83,3 +80,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "bootstrap", "~> 5.3"
 
 gem "rails_12factor", "~> 0.0.3"
+
+gem 'pg', '~> 1.1'
