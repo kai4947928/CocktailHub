@@ -1,4 +1,4 @@
-OmniAuth.config.full_host = Rails.env.production? ? 'https://your-production-url.com' : 'http://localhost:3000'
+OmniAuth.config.full_host = Rails.env.production? ? 'https://cocktail-hub-5b3c224ad675.herokuapp.com' : 'http://localhost:3000'
 
 OmniAuth.config.on_failure = Proc.new do |env|
   SessionsController.action(:failure).call(env)
