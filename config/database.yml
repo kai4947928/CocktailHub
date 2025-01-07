@@ -49,7 +49,4 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: cocktail_hub_production
-  username: cocktail_hub
-  password: <%= ENV['COCKTAIL_HUB_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
