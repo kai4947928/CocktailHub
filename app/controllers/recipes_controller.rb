@@ -4,14 +4,6 @@ class RecipesController < ApplicationController
   def index
     @q = Recipe.ransack(params[:q])
     @recipes = @q.result.includes(:difficulty, :base_liquor, :ingredients).distinct
-    @recipes = @recipes.where(category: 'original') if params[:q]&.[](:category_eq) == 'original'
-  end
-
-  def parent_recipe_options
-    @recipes = Recipe.where(category: 'original')
-    respond_to do |format|
-      format.js
-    end
   end
 
   def show
