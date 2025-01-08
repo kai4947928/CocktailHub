@@ -21,5 +21,5 @@ class Recipe < ApplicationRecord
     ["base_liquor", "difficulty", "flavor", "ingredients", "parent_recipe", "recipe_ingredients", "user"]
   end
 
-  enum alcohol_strength: { weak: 0, medium: 1, strong: 2 }
+  enum alcohol_strength: { 弱め: 0, 普通: 1, 強め: 2 }
 end
