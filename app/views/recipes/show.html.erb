@@ -10,9 +10,13 @@
         <strong>ベース:</strong> <%= @recipe.base_liquor.name %><br>
 
         <strong>副材料:</strong>
-        <% @recipe.ingredients.each_with_index do |ingredient, index| %>
-          <%= ingredient.name %><%= ' + ' unless index == @recipe.ingredients.length - 1 %>
-        <% end %>
+        <ul>
+          <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+            <li>
+              <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>
+            </li>
+          <% end %>
+        </ul>
 
         <br><strong>手順:</strong>
         <p><%= @recipe.procedure %></p>
