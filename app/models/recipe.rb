@@ -3,13 +3,17 @@ class Recipe < ApplicationRecord
   belongs_to :difficulty
   belongs_to :base_liquor
   belongs_to :flavor
-  has_many :recipe_ingredients
+
+  has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
-  belongs_to :parent_recipe, class_name: 'Recipe', optional: true
-  has_many :recipes, foreign_key: 'parent_recipe_id', dependent: :destroy
 
   validates :name, presence: true
-  validates :category, inclusion: { in: ['original', 'arrange'] }
+
+  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true,  reject_if: :quantity_blank?
+
+  def quantity_blank?(attributes)
+    attributes['quantity'].blank?
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["base_liquor_id", "difficulty_id", "category"]
