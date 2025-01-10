@@ -5,7 +5,7 @@
     <div class="card-body">
       <h5 class="card-title">カクテル名: <%= @recipe.name %></h5>
       <p class="card-text">
-        <strong>アルコール度数:</strong> <%= @recipe.alcohol_strength %><br>
+        <strong>アルコール度数:</strong> <%= t("activerecord.attributes.recipe.alcohol_strength.#{@recipe.alcohol_strength}") %><br>
         <strong>難易度:</strong> <%= @recipe.difficulty.name %><br>
         <strong>ベース:</strong> <%= @recipe.base_liquor.name %><br>
 

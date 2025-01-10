@@ -16,14 +16,12 @@ class Recipe < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["base_liquor_id", "difficulty_id", "category"]
+    ["base_liquor_id", "difficulty_id"]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    # 検索可能にしたい関連付けをここに列挙
-    # 例: "base_liquor", "difficulty", "flavor", "ingredients", "parent_recipe", "recipe_ingredients", "recipes", "user"
     ["base_liquor", "difficulty", "flavor", "ingredients", "parent_recipe", "recipe_ingredients", "user"]
   end
 
-  enum alcohol_strength: { 弱め: 0, 普通: 1, 強め: 2 }
+  enum alcohol_strength: {weak:0 , medium:1 , strong:2 }
 end
