@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      recipe:
+        alcohol_strength:
+          weak: "弱め"
+          medium: "普通"
+          strong: "強め"
