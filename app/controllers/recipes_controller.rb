@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.new(alcohol_strength: nil)
     @recipe.recipe_ingredients.build
     @base_liquors = BaseLiquor.all
     @difficulties = Difficulty.all
