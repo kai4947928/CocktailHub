@@ -17,13 +17,12 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :alcohol_strength, "アルコール度数" %>
+    <%= form.label :alcohol_strength, "アルコール強さ" %>
     <%= form.select :alcohol_strength,
       Recipe.alcohol_strengths.keys.map { |key| [t("activerecord.attributes.recipe.alcohol_strength.#{key}"), key] },
-      { prompt: "選択してください" },
-      { class: "form-control" } %>
+      {prompt: "選択してください"},
+      class: "form-control" %>
   </div>
-
 
   <div class="form-group">
     <%= form.label :difficulty_id, "難易度" %>
