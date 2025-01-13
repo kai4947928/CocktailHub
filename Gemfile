@@ -82,3 +82,7 @@ gem "bootstrap", "~> 5.3"
 gem "rails_12factor", "~> 0.0.3"
 
 gem 'pg', '~> 1.1'
+
+gem "kaminari", "~> 1.2"
+
+gem "bootstrap5-kaminari-views", "~> 0.0.1"
