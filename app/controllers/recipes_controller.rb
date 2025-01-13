@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @q = Recipe.ransack(params[:q])
-    @recipes = @q.result.includes(:difficulty, :base_liquor, :ingredients).distinct
+    @recipes = @q.result.includes(:difficulty, :base_liquor, :ingredients).distinct.page(params[:page])
   end
 
   def show
