@@ -4,7 +4,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto text-nowrap">
         <li class="nav-item">
           <%= link_to 'TOP', root_path, class: 'nav-link' %>
         </li>
@@ -13,17 +13,13 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               マイページ
             </button>
-            <ul class="dropdown-menu" aria-labelledby="mypageDropdown">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="mypageDropdown">
               <li>
                 <%= link_to '自分のカクテル一覧', my_recipes_recipes_path, class: 'dropdown-item' %>
               </li>
 
               <li>
                 <%= link_to 'カクテル投稿', new_recipe_path, class: 'dropdown-item' %>
-              </li>
-
-              <li>
-                <%= link_to 'アカウント編集', edit_user_registration_path, class: 'dropdown-item' %>
               </li>
 
               <li>
