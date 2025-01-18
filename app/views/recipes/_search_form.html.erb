@@ -15,3 +15,18 @@
     </div>
   </div>
 <% end %>
+
+<div class="mb-3">
+  <label for="autocomplete">カクテル名</label>
+  <div class="input-group">
+    <input
+      type="text"
+      id="autocomplete"
+      data-controller="recipes-autocomplete"
+      data-action="input->recipes-autocomplete#search"
+      data-recipes-autocomplete-url-value="<%= autocomplete_recipes_path %>"
+      class="form-control"
+      placeholder="カクテル名を入力"
+    >
+  </div>
+</div>
