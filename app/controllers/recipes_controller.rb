@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @q = Recipe.ransack(params[:q])
-    @recipes = @q.result.includes(:difficulty, :base_liquor, :ingredients).distinct.page(params[:page])
+    @recipes = @q.result.includes(:difficulty, :base_liquor).distinct.page(params[:page])
   end
 
   def show
@@ -57,6 +57,17 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to my_recipes_recipes_path, notice: "カクテルが削除されました"
   end
+
+  def autocomplete
+    if params[:term].present?
+      # 部分一致でカクテル名を検索
+      recipes = Recipe.where('name LIKE ?', "%#{params[:term]}%")
+      render json: recipes.pluck(:name) # 結果として名前だけを返す
+    else
+      render json: []
+    end
+  end
+
 
   private
 
