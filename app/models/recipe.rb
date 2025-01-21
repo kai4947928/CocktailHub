@@ -16,7 +16,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["base_liquor_id", "difficulty_id"]
+    ["name", "base_liquor_id", "difficulty_id"]
   end
 
   def self.ransackable_associations(auth_object = nil)
