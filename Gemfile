@@ -86,3 +86,7 @@ gem 'pg', '~> 1.1'
 gem "kaminari", "~> 1.2"
 
 gem "bootstrap5-kaminari-views", "~> 0.0.1"
+
+gem "image_processing", "~> 1.13"
+
+gem "ruby-vips", "~> 2.2"

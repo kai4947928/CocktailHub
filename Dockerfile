@@ -4,6 +4,7 @@ FROM ruby:3.2
 RUN apt-get update -qq && apt-get install -y postgresql-client \
   build-essential \
   libpq-dev \
+  libvips42 \
   nodejs \
   git
 
