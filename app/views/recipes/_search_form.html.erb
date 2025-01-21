@@ -11,22 +11,17 @@
     </div>
 
     <div class="col-md-4">
+      <%= f.label :search, 'カクテル名で検索' %>
+      <%= f.text_field :name_cont,
+                   data: { controller: "recipes-autocomplete", action: "input->recipes-autocomplete#updateSuggestions" },
+                   class: 'form-control',
+                   placeholder: '検索キーワードを入力' %>
+    </div>
+
+    <ul data-recipes-autocomplete-target="suggestions"></ul>
+
+    <div class="col-md-4">
       <%= f.submit '検索', class: 'btn btn-primary mt-4' %>
     </div>
   </div>
 <% end %>
-
-<div class="mb-3">
-  <label for="autocomplete">カクテル名</label>
-  <div class="input-group">
-    <input
-      type="text"
-      id="autocomplete"
-      data-controller="recipes-autocomplete"
-      data-action="input->recipes-autocomplete#search"
-      data-recipes-autocomplete-url-value="<%= autocomplete_recipes_path %>"
-      class="form-control"
-      placeholder="カクテル名を入力"
-    >
-  </div>
-</div>
