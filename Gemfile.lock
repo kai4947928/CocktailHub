@@ -123,6 +123,9 @@ GEM
     hashie (5.0.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    image_processing (1.13.0)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.1.0)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -161,6 +164,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
+    mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.4)
     msgpack (1.7.5)
@@ -267,6 +271,9 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.4.0)
+    ruby-vips (2.2.2)
+      ffi (~> 1.12)
+      logger
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -334,6 +341,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dotenv-rails
+  image_processing (~> 1.13)
   importmap-rails
   jbuilder
   kaminari (~> 1.2)
@@ -344,6 +352,7 @@ DEPENDENCIES
   rails (~> 7.0.6)
   rails_12factor (~> 0.0.3)
   ransack (~> 4.2)
+  ruby-vips (~> 2.2)
   sassc-rails
   selenium-webdriver
   sprockets-rails

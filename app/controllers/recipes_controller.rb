@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-
+    @user = @recipe.user
   end
 
   def edit
@@ -74,7 +74,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :alcohol_strength, :flavor_id, :procedure, :difficulty_id, :base_liquor_id,
+    params.require(:recipe).permit(:name, :image, :alcohol_strength, :flavor_id, :procedure, :difficulty_id, :base_liquor_id,
     recipe_ingredients_attributes: [:ingredient_id, :quantity, :_destroy])
   end
 

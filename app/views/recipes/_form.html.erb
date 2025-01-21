@@ -30,6 +30,11 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, class: "form-control", prompt: "画像が貼れます" %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :flavor_id, "フレーバー" %>
     <%= form.collection_select :flavor_id, Flavor.all, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
   </div>
