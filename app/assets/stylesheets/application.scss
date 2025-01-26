@@ -16,7 +16,6 @@
  */
 
  .card-hover:hover {
-   background-color: #f0f8ff; /* ホバー時にカード全体が水色に変わる */
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 軽いシャドウを追加 */
-   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* スムーズな変化 */
- }
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

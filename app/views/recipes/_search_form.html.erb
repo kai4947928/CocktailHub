@@ -1,27 +1,35 @@
-<%= search_form_for @q, url: recipes_path, method: :get do |f| %>
-  <div class="row mb-4">
+<%= search_form_for @q, url: recipes_path, method: :get, html: { class: "bg-light p-4 rounded shadow-sm" } do |f| %>
+  <div class="row gy-3">
     <div class="col-md-4">
-      <%= f.label :base_liquor_id_eq, 'ベースのお酒' %>
-      <%= f.collection_select :base_liquor_id_eq, BaseLiquor.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+      <%= f.label :base_liquor_id_eq, 'ベースのお酒', class: 'form-label fw-bold text-secondary' %>
+      <%= f.collection_select :base_liquor_id_eq, BaseLiquor.all, :id, :name,
+        { prompt: '選択してください' },
+        class: 'form-select' %>
     </div>
 
     <div class="col-md-4">
-      <%= f.label :difficulty_id_eq, '難易度' %>
-      <%= f.collection_select :difficulty_id_eq, Difficulty.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+      <%= f.label :difficulty_id_eq, '難易度', class: 'form-label fw-bold text-secondary' %>
+      <%= f.collection_select :difficulty_id_eq, Difficulty.all, :id, :name,
+        { prompt: '選択してください' },
+        class: 'form-select' %>
     </div>
 
     <div class="col-md-4">
-      <%= f.label :search, 'カクテル名で検索' %>
-      <%= f.text_field :name_cont,
-                   data: { controller: "recipes-autocomplete", action: "input->recipes-autocomplete#updateSuggestions" },
-                   class: 'form-control',
-                   placeholder: '検索キーワードを入力' %>
+      <%= f.label :search, 'カクテル名で検索', class: 'form-label fw-bold text-secondary' %>
+      <div class="position-relative">
+        <%= f.text_field :name_cont,
+          data: { controller: "recipes-autocomplete", action: "input->recipes-autocomplete#updateSuggestions" },
+          class: 'form-control',
+          placeholder: '検索キーワードを入力' %>
+        <ul data-recipes-autocomplete-target="suggestions"
+          class="list-group position-absolute w-100"
+          style="z-index: 1000;"></ul>
+      </div>
     </div>
 
-    <ul data-recipes-autocomplete-target="suggestions"></ul>
-
     <div class="col-md-4">
-      <%= f.submit '検索', class: 'btn btn-primary mt-4' %>
+      <%= f.submit '検索', class: 'btn btn-primary w-100 mt-3' %>
     </div>
   </div>
 <% end %>
+

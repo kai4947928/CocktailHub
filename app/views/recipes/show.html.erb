@@ -1,34 +1,52 @@
-<div class="container mt-4">
-  <h1><%= @recipe.name %>の詳細</h1>
-
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">カクテル名: <%= @recipe.name %></h5>
-      <p class="card-text">
-        <strong>アルコール度数:</strong> <%= t("activerecord.attributes.recipe.alcohol_strength.#{@recipe.alcohol_strength}") %><br>
-        <strong>難易度:</strong> <%= @recipe.difficulty.name %><br>
-        <strong>ベース:</strong> <%= @recipe.base_liquor.name %><br>
-
-        <strong>副材料:</strong>
-        <ul>
-          <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-            <li>
-              <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>
-            </li>
-          <% end %>
-        </ul>
-
-        <% if @recipe.image.attached? %>
-          <%= image_tag @recipe.image.variant(resize_to_fill: [200,200]) %>
-        <% end %>
-
-        <br><strong>手順:</strong>
-        <p><%= @recipe.procedure %></p>
-
-        <% if @recipe.flavor.present? %>
-          <br><strong>フレーバー:</strong> <%= @recipe.flavor.name %>
-        <% end %>
-      </p>
+<div class="container mt-5">
+  <!-- ヘッダー部分 -->
+  <div class="row mb-4">
+    <div class="col text-center">
+      <h1 class="display-4" style="color: #1d2a3a;"><%= @recipe.name %></h1>
     </div>
   </div>
 
+  <!-- メイン情報と画像 -->
+  <div class="row align-items-center">
+    <!-- メイン情報 -->
+    <div class="col-md-6">
+      <h3 style="color: #1d2a3a;">レシピ情報</h3>
+      <ul class="list-unstyled" style="color: #1d2a3a;">
+        <li><strong>アルコール度数:</strong> <%= t("activerecord.attributes.recipe.alcohol_strength.#{@recipe.alcohol_strength}") %></li>
+        <li><strong>難易度:</strong> <%= @recipe.difficulty.name %></li>
+        <li><strong>ベース:</strong> <%= @recipe.base_liquor.name %></li>
+      </ul>
+
+      <h4 style="color: #1d2a3a;">材料</h4>
+      <ul style="color: #1d2a3a;">
+        <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+          <li>
+            <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <!-- 画像 -->
+    <div class="col-md-6 text-center">
+      <% if @recipe.image.attached? %>
+        <%= image_tag @recipe.image.variant(resize_to_fill: [300, 300]), class: "rounded shadow" %>
+      <% else %>
+        <p style="color: #1d2a3a;">画像がありません</p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 手順とフレーバー -->
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h4 style="color: #1d2a3a;">手順</h4>
+      <p style="color: #1d2a3a;"><%= @recipe.procedure %></p>
+
+      <% if @recipe.flavor.present? %>
+        <h4 style="color: #1d2a3a;">フレーバー</h4>
+        <p style="color: #1d2a3a;"><%= @recipe.flavor.name %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
