@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1d2a3a; padding: 10px 20px;">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -6,34 +6,32 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto text-nowrap">
         <li class="nav-item">
-          <%= link_to 'TOP', root_path, class: 'nav-link' %>
+          <%= link_to 'TOP', root_path, class: 'nav-link', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
         </li>
         <li class="nav-item">
-          <%= link_to "アプリの使い方", how_to_use_path, class: 'nav-link' %>
+          <%= link_to "アプリの使い方", how_to_use_path, class: 'nav-link', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
         </li>
-        <% if user_signed_in? %> <!-- ユーザーがログインしている場合 -->
+        <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" style="background-color: #f5f5dc; color: #1d2a3a; border: none; padding: 5px 10px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               マイページ
             </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="mypageDropdown">
+            <ul class="dropdown-menu dropdown-menu-end" style="background-color: #1d2a3a; border: 1px solid #c0c0c0; border-radius: 8px;">
               <li>
-                <%= link_to '自分のカクテル一覧', my_recipes_recipes_path, class: 'dropdown-item' %>
+                <%= link_to '自分のカクテル一覧', my_recipes_recipes_path, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
               </li>
-
               <li>
-                <%= link_to 'カクテル投稿', new_recipe_path, class: 'dropdown-item' %>
+                <%= link_to 'カクテル投稿', new_recipe_path, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
               </li>
-
               <li>
-                <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { turbo: false } %>
+                <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';", data: { turbo: false } %>
               </li>
             </ul>
           </li>
-        <% else %> <!-- ユーザーがログインしていない場合 -->
+        <% else %>
           <li class="nav-item">
-            <%= button_to user_google_oauth2_omniauth_authorize_path do %>
-              <%= image_tag 'google_login_button1.png', alt: 'Googleでログイン', class: 'google-login-btn' %>
+            <%= button_to user_google_oauth2_omniauth_authorize_path, class: 'btn', style: 'padding: 0;' do %>
+              <%= image_tag 'google_login_button1.png', alt: 'Googleでログイン', class: 'google-login-btn', style: 'width: 150px; height: auto; border-radius: 8px; border: 1px solid #c0c0c0; transition: transform 0.3s;', onmouseover: "this.style.transform='scale(1.05)';", onmouseout: "this.style.transform='scale(1)';" %>
             <% end %>
           </li>
         <% end %>

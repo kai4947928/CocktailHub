@@ -1,8 +1,7 @@
-<%= form_with(model: recipe, local: true) do |form| %>
+<%= form_with(model: recipe, local: true, class: "container mt-5") do |form| %>
   <% if recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
+      <h4><%= pluralize(recipe.errors.count, "error") %> が発生しました:</h4>
       <ul>
         <% recipe.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,59 +10,79 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name, "カクテル名" %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
+  <div class="card p-4 shadow border-0">
+    <h2 class="mb-4 text-center" style="color: #1d2a3a;">カクテルの投稿フォーム</h2>
 
-  <div class="form-group">
-    <%= form.label :alcohol_strength, "アルコール強さ" %>
-    <%= form.select :alcohol_strength,
-      Recipe.alcohol_strengths.keys.map { |key| [t("activerecord.attributes.recipe.alcohol_strength.#{key}"), key] },
-      {prompt: "選択してください"},
-      class: "form-control" %>
-  </div>
+    <!-- カクテル名 -->
+    <div class="form-group mb-3">
+      <%= form.label :name, "カクテル名", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "カクテル名を入力" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :difficulty_id, "難易度" %>
-    <%= form.collection_select :difficulty_id, @difficulties, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
-  </div>
+    <!-- アルコール強さ -->
+    <div class="form-group mb-3">
+      <%= form.label :alcohol_strength, "アルコール強さ", class: "form-label" %>
+      <%= form.select :alcohol_strength,
+        Recipe.alcohol_strengths.keys.map { |key| [t("activerecord.attributes.recipe.alcohol_strength.#{key}"), key] },
+        { prompt: "選択してください" },
+        class: "form-select" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :image %>
-    <%= form.file_field :image, class: "form-control", prompt: "画像が貼れます" %>
-  </div>
+    <!-- 難易度 -->
+    <div class="form-group mb-3">
+      <%= form.label :difficulty_id, "難易度", class: "form-label" %>
+      <%= form.collection_select :difficulty_id, @difficulties, :id, :name,
+        { prompt: "選択してください" },
+        class: "form-select" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :flavor_id, "フレーバー" %>
-    <%= form.collection_select :flavor_id, Flavor.all, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
-  </div>
+    <!-- 画像 -->
+    <div class="form-group mb-3">
+      <%= form.label :image, "画像", class: "form-label" %>
+      <%= form.file_field :image, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :base_liquor_id, "ベースリキュール" %>
-    <%= form.collection_select :base_liquor_id, @base_liquors, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
-  </div>
+    <!-- フレーバー -->
+    <div class="form-group mb-3">
+      <%= form.label :flavor_id, "フレーバー", class: "form-label" %>
+      <%= form.collection_select :flavor_id, Flavor.all, :id, :name,
+        { prompt: "選択してください" },
+        class: "form-select" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label "副材料と分量" %>
-    <div id="ingredients-list">
-      <% @ingredients.each do |ingredient| %>
-        <div class="form-check">
-          <%= form.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |ri_form| %>
-            <%= ri_form.hidden_field :ingredient_id, value: ingredient.id %>
-            <%= ri_form.label :ingredient_id, ingredient.name, class: "form-check-label" %>
-            <%= ri_form.number_field :quantity, class: "form-control", placeholder: "分量を入力", min: 1 %>
-          <% end %>
-        </div>
-      <% end %>
+    <!-- ベースリキュール -->
+    <div class="form-group mb-3">
+      <%= form.label :base_liquor_id, "ベースリキュール", class: "form-label" %>
+      <%= form.collection_select :base_liquor_id, @base_liquors, :id, :name,
+        { prompt: "選択してください" },
+        class: "form-select" %>
+    </div>
+
+    <!-- 副材料と分量 -->
+    <div class="form-group mb-3">
+      <%= form.label :recipe_ingredients, "副材料と分量", class: "form-label" %>
+      <div id="ingredients-list">
+        <% @ingredients.each do |ingredient| %>
+          <div class="form-check mb-2 d-flex align-items-center">
+            <%= check_box_tag "recipe[ingredients][#{ingredient.id}][selected]", "1", false, id: "ingredient_#{ingredient.id}", class: "form-check-input me-2" %>
+            <%= label_tag "ingredient_#{ingredient.id}", ingredient.name, class: "form-check-label me-3" %>
+            <%= number_field_tag "recipe[ingredients][#{ingredient.id}][quantity]", nil, class: "form-control w-25", placeholder: "分量", min: 1, disabled: true, id: "quantity_#{ingredient.id}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 作り方 -->
+    <div class="form-group mb-4">
+      <%= form.label :procedure, "作り方", class: "form-label" %>
+      <%= form.text_area :procedure, class: "form-control", rows: 5, placeholder: "作り方を記入してください" %>
+    </div>
+
+    <!-- 投稿ボタン -->
+    <div class="text-center">
+      <%= form.submit "投稿する", class: "btn btn-primary btn-lg" %>
     </div>
   </div>
-
-  <div class="form-group">
-    <%= form.label :procedure, "作り方" %>
-    <%= form.text_area :procedure, class: "form-control", rows: 4 %>
-  </div>
-
-  <%= form.submit "投稿する", class: "btn btn-primary" %>
 <% end %>
+
 
