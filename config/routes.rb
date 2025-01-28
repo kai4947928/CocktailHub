@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy_policy'
 
   resources :recipes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :favorites, only: [:create, :destroy]
     collection do
       get :my_recipes
       get :autocomplete
+      get :favorites
     end
   end
 end

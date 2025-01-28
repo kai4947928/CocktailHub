@@ -2,7 +2,25 @@
   <!-- ヘッダー部分 -->
   <div class="row mb-4">
     <div class="col text-center">
-      <h1 class="display-4" style="color: #1d2a3a;"><%= @recipe.name %></h1>
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- タイトル -->
+        <h1 class="display-4 mb-0" style="color: #1d2a3a;"><%= @recipe.name %></h1>
+
+        <!-- お気に入りボタン -->
+        <% if user_signed_in? %>
+          <% if current_user.favorite_recipes.include?(@recipe) %>
+            <%= button_to recipe_favorite_path(@recipe, current_user.favorites.find_by(recipe: @recipe)),
+                  method: :delete, class: "btn btn-link" do %>
+              <i class="bi bi-star-fill" style="color: gold;"></i>
+            <% end %>
+          <% else %>
+            <%= button_to recipe_favorites_path(@recipe),
+                  method: :post, class: "btn btn-link" do %>
+              <i class="bi bi-star" style="color: grey;"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 

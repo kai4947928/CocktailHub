@@ -1,5 +1,5 @@
 pin "application", preload: true
-pin "rails-ujs", to: "rails-ujs.js"
+#pin "rails-ujs", to: "rails-ujs.js"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "activestorage", to: "activestorage.js"
 pin "@hotwired/stimulus", to: "@hotwired/stimulus.js"
