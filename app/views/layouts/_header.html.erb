@@ -20,9 +20,15 @@
               <li>
                 <%= link_to '自分のカクテル一覧', my_recipes_recipes_path, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
               </li>
+
+              <li>
+                <%= link_to 'お気に入りカクテル一覧', favorites_recipes_path, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
+              </li>
+
               <li>
                 <%= link_to 'カクテル投稿', new_recipe_path, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';" %>
               </li>
+
               <li>
                 <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item', style: 'color: #c0c0c0; transition: color 0.3s;', onmouseover: "this.style.color='#ffffff';", onmouseout: "this.style.color='#c0c0c0';", data: { turbo: false } %>
               </li>

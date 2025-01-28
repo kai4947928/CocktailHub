@@ -67,6 +67,10 @@ class RecipesController < ApplicationController
     redirect_to my_recipes_recipes_path, notice: "カクテルが削除されました"
   end
 
+  def favorites
+    @favorite_recipes = current_user.favorite_recipes
+  end
+
   private
 
   def set_recipe
