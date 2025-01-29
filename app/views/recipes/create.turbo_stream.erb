@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "favorite_button_#{@recipe.id}" do %>
+  <%= button_to recipe_favorite_path(@recipe, current_user.favorites.find_by(recipe: @recipe)),
+        method: :delete, class: "btn btn-link", data: { turbo_stream: true } do %>
+    <i class="bi bi-star-fill" style="color: gold;"></i>
+  <% end %>
+<% end %>

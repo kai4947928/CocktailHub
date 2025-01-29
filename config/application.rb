@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -11,7 +13,7 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.time_zone = 'Asia/Tokyo'
+    config.time_zone = "Asia/Tokyo"
 
     config.i18n.default_locale = :ja
 
