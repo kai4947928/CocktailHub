@@ -1,9 +1,14 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import { start } from "rails-ujs"
-import * as ActiveStorage from "activestorage"
-
-// rails-ujs と activestorage を初期化
-start()
-ActiveStorage.start()
-
+// app/javascript/application.js
+import { Turbo } from "@hotwired/turbo-rails"
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
 import "controllers"
+
+// Turboを初期化
+Turbo.start()
+
+// Stimulusの初期化
+const application = Application.start()
+const context = require.context("controllers", true, /.js$/)
+application.load(definitionsFromContext(context))
