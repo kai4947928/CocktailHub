@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "favorite_button_#{@recipe.id}" do %>
+  <%= button_to recipe_favorites_path(@recipe),
+        method: :post, class: "btn btn-link", data: { turbo_stream: true } do %>
+    <i class="bi bi-star" style="color: grey;"></i>
+  <% end %>
+<% end %>

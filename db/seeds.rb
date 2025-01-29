@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # サンプルユーザーを作成
 user = User.create!(email: 'user@example.com', password: 'password123',
-password_confirmation: 'password123')
+                    password_confirmation: 'password123')
 
 # サンプルの難易度
 difficulty_easy = Difficulty.create!(name: '初級')
@@ -24,7 +26,7 @@ ingredient_soda = Ingredient.create!(name: '炭酸水')
 ingredient_ginger_ale = Ingredient.create!(name: 'ジンジャーエール')
 ingredient_lime = Ingredient.create!(name: 'ライム')
 ingredient_vermouth = Ingredient.create!(name: 'ヴェルモット')
-ingredient_champagne = Ingredient.create!(name: 'シャンパン')
+Ingredient.create!(name: 'シャンパン')
 ingredient_egg_white = Ingredient.create!(name: '卵白')
 ingredient_grenadine = Ingredient.create!(name: 'グレナデン')
 ingredient_orange_juice = Ingredient.create!(name: 'オレンジジュース')
@@ -36,7 +38,7 @@ ingredient_salt = Ingredient.create!(name: '塩')
 ingredient_tomato_juice = Ingredient.create!(name: 'トマトジュース')
 ingredient_cranberry_juice = Ingredient.create!(name: 'クランベリージュース')
 ingredient_grapefruit_juice = Ingredient.create!(name: 'グレープフルーツジュース')
-ingredient_black_currant_liqueur = Ingredient.create!(name: 'カシスリキュール')
+Ingredient.create!(name: 'カシスリキュール')
 ingredient_blue_curacao = Ingredient.create!(name: 'ブルーキュラソー')
 ingredient_pineapple_juice = Ingredient.create!(name: 'パイナップルジュース')
 ingredient_tabasco = Ingredient.create!(name: 'タバスコ')
@@ -65,10 +67,10 @@ sweet = Flavor.create!(name: '甘味系')
 sour = Flavor.create!(name: '酸味系')
 bitter = Flavor.create!(name: '苦味系')
 spicy = Flavor.create!(name: '辛味系')
-fruity = Flavor.create!(name: 'フルーティ系')
-rich = Flavor.create!(name: '濃厚・コク系')
+Flavor.create!(name: 'フルーティ系')
+Flavor.create!(name: '濃厚・コク系')
 refreshing = Flavor.create!(name: 'さっぱり系')
-smoky = Flavor.create!(name: 'スモーキー系')
+Flavor.create!(name: 'スモーキー系')
 
 # サンプルカクテル 1: ジントニック
 gin_tonic = Recipe.create!(
@@ -415,7 +417,6 @@ sea_breeze.ingredients << [ingredient_cranberry_juice, ingredient_grapefruit_jui
 sea_breeze.recipe_ingredients.each { |ri| ri.update(quantity: 1) }
 # 作り方: ビルド
 
-
 cosmopolitan = Recipe.create!(
   name: 'コスモポリタン',
   alcohol_strength: 'medium',
@@ -457,7 +458,8 @@ long_island_iced_tea = Recipe.create!(
   flavor: sour,
   user: user
 )
-long_island_iced_tea.ingredients << [ingredient_gin, ingredient_rum, ingredient_triple_sec, ingredient_lemon_juice, ingredient_coke]
+long_island_iced_tea.ingredients << [ingredient_gin, ingredient_rum, ingredient_triple_sec, ingredient_lemon_juice,
+                                     ingredient_coke]
 long_island_iced_tea.recipe_ingredients.each { |ri| ri.update(quantity: 1) }
 
 balalaika = Recipe.create!(

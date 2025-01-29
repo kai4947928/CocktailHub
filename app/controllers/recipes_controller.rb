@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
     @q = Recipe.ransack(params[:q])
@@ -11,7 +13,7 @@ class RecipesController < ApplicationController
   end
 
   def autocomplete
-    @recipes = Recipe.where("name LIKE ?", "%#{params[:query]}%")
+    @recipes = Recipe.where('name LIKE ?', "%#{params[:query]}%")
     render json: @recipes.pluck(:name)
   end
 
@@ -35,15 +37,15 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
-      if @recipe.save
-        redirect_to @recipe, notice: 'カクテルが投稿されました！'
-      else
-        flash.now[:alert] = "カクテルの投稿に失敗しました。"
-        @base_liquors = BaseLiquor.all
-        @difficulties = Difficulty.all
-        @ingredients = Ingredient.all
-        render :new
-      end
+    if @recipe.save
+      redirect_to @recipe, notice: 'カクテルが投稿されました！'
+    else
+      flash.now[:alert] = 'カクテルの投稿に失敗しました。'
+      @base_liquors = BaseLiquor.all
+      @difficulties = Difficulty.all
+      @ingredients = Ingredient.all
+      render :new
+    end
   end
 
   def my_recipes
@@ -56,7 +58,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'カクテルが更新されました！'
     else
-      flash.now[:alert] = "カクテルの更新に失敗しました。"
+      flash.now[:alert] = 'カクテルの更新に失敗しました。'
       render :edit
     end
   end
@@ -64,7 +66,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy
-    redirect_to my_recipes_recipes_path, notice: "カクテルが削除されました"
+    redirect_to my_recipes_recipes_path, notice: 'カクテルが削除されました'
   end
 
   def favorites
@@ -79,7 +81,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :image, :alcohol_strength, :flavor_id, :procedure, :difficulty_id, :base_liquor_id,
-    recipe_ingredients_attributes: [:ingredient_id, :quantity, :_destroy])
+                                   recipe_ingredients_attributes: %i[ingredient_id quantity _destroy])
   end
 
   def correct_user

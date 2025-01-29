@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 pin "application", to: "application.js", preload: true
 
 pin "@hotwired/stimulus", to: "stimulus.js"
