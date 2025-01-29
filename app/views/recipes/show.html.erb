@@ -10,12 +10,12 @@
         <% if user_signed_in? %>
           <% if current_user.favorite_recipes.include?(@recipe) %>
             <%= button_to recipe_favorite_path(@recipe, current_user.favorites.find_by(recipe: @recipe)),
-                  method: :delete, class: "btn btn-link" do %>
+                method: :delete, class: "btn btn-link", data: { turbo_stream: true } do %>
               <i class="bi bi-star-fill" style="color: gold;"></i>
             <% end %>
           <% else %>
             <%= button_to recipe_favorites_path(@recipe),
-                  method: :post, class: "btn btn-link" do %>
+                method: :post, class: "btn btn-link", data: { turbo_stream: true } do %>
               <i class="bi bi-star" style="color: grey;"></i>
             <% end %>
           <% end %>

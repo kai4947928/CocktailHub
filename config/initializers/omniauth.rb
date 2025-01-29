@@ -1,6 +1,8 @@
-OmniAuth.config.full_host = Rails.env.production? ? 'https://cocktail-hub-5b3c224ad675.herokuapp.com' : 'http://localhost:3000'
+# frozen_string_literal: true
 
-OmniAuth.config.on_failure = Proc.new do |env|
+OmniAuth.config.full_host = Rails.env.production? ? "https://cocktail-hub-5b3c224ad675.herokuapp.com" : "http://localhost:3000"
+
+OmniAuth.config.on_failure = proc do |env|
   SessionsController.action(:failure).call(env)
 end
 
