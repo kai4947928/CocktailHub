@@ -33,17 +33,23 @@ jobs:
           ruby-version: 3.2.6
           bundler-cache: true
 
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libvips42
+          bundle install
+
       - name: 環境変数の設定
         run: |
           echo "RAILS_ENV=test" >> $GITHUB_ENV
           echo "DATABASE_URL=postgres://postgres:password@localhost:5432/myapp_test" >> $GITHUB_ENV
 
-      - name: Node.js をセットアップ（必要な場合）
+      - name: Node.js をセットアップ
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Yarn パッケージをインストール（必要な場合）
+      - name: Yarn パッケージをインストール
         run: yarn install --frozen-lockfile
 
       - name: データベースをセットアップ
