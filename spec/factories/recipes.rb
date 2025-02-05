@@ -1,6 +1,10 @@
 FactoryBot.define do
   factory :recipe do
-    name { "カクテルX" }
+    name { "testカクテル" }
+    alcohol_strength { :medium }
+    procedure { "手順の説明" }
+    category { "original" }
+
     association :user
     association :difficulty
     association :base_liquor
