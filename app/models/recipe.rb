@@ -39,6 +39,8 @@ class Recipe < ApplicationRecord
   private
 
   def add_default_tag
-    self.category_list.add("投稿") unless category_list.include?("投稿")
+    unless category_list.include?("公式")
+      self.category_list.add("投稿") unless category_list.include?("投稿")
+    end
   end
 end
