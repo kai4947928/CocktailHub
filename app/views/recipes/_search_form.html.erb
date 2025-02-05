@@ -15,16 +15,8 @@
     </div>
 
     <div class="col-md-4">
-      <%= f.label :search, 'カクテル名で検索', class: 'form-label fw-bold text-secondary' %>
-      <div class="position-relative">
-        <%= f.text_field :name_cont,
-          data: { controller: "recipes-autocomplete", action: "input->recipes-autocomplete#updateSuggestions" },
-          class: 'form-control',
-          placeholder: '検索キーワードを入力' %>
-        <ul data-recipes-autocomplete-target="suggestions"
-          class="list-group position-absolute w-100"
-          style="z-index: 1000;"></ul>
-      </div>
+      <%= f.label :name_cont, 'カクテル名で検索', class: 'form-label fw-bold text-secondary' %>
+      <%= f.text_field :name_cont, class: 'form-control', placeholder: '検索キーワードを入力' %>
     </div>
 
     <div class="col-md-4">

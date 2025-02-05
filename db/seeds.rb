@@ -79,6 +79,7 @@ gin_tonic = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_gin,
   flavor: bitter,
+  category_list: "公式",
   user: user
 )
 gin_tonic.ingredients << [ingredient_tonic_water]
@@ -92,6 +93,7 @@ gin_fizz = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_gin,
   flavor: sour,
+  category_list: "公式",
   user: user
 )
 gin_fizz.ingredients << [ingredient_lemon_juice, ingredient_sugar, ingredient_soda]
@@ -105,6 +107,7 @@ gin_buck = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_gin,
   flavor: spicy,
+  category_list: "公式",
   user: user
 )
 gin_buck.ingredients << [ingredient_ginger_ale, ingredient_lime]
@@ -118,6 +121,7 @@ gin_rickey = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_gin,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 gin_rickey.ingredients << [ingredient_lime, ingredient_soda]
@@ -131,6 +135,7 @@ gin_lime = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_gin,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 gin_lime.ingredients << [ingredient_lime]
@@ -144,6 +149,7 @@ martini = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_gin,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 martini.ingredients << [ingredient_vermouth]
@@ -157,6 +163,7 @@ french_75 = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_gin,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 french_75.ingredients << [ingredient_lemon_juice, ingredient_sugar, ingredient_champagne]
@@ -170,6 +177,7 @@ pink_lady = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_gin,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 pink_lady.ingredients << [ingredient_egg_white, ingredient_grenadine, ingredient_lemon_juice]
@@ -183,6 +191,7 @@ orange_blossom = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_gin,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 orange_blossom.ingredients << [ingredient_orange_juice]
@@ -196,6 +205,7 @@ gimlet = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_gin,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 gimlet.ingredients << [ingredient_lime_juice, ingredient_sugar]
@@ -209,6 +219,7 @@ negroni = Recipe.create!(
   difficulty: difficulty_medium,
   base_liquor: base_gin,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 negroni.ingredients << [ingredient_vermouth, ingredient_campari]
@@ -222,6 +233,7 @@ blue_moon = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_gin,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 blue_moon.ingredients << [ingredient_vermouth, ingredient_curacao]
@@ -234,6 +246,7 @@ margarita = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_tequila,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 margarita.ingredients << [ingredient_lime_juice, ingredient_triple_sec]
@@ -247,6 +260,7 @@ tequila_sunrise = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_tequila,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 tequila_sunrise.ingredients << [ingredient_orange_juice, ingredient_grenadine]
@@ -260,6 +274,7 @@ paloma = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_tequila,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 paloma.ingredients << [ingredient_grapefruit_juice, ingredient_soda]
@@ -273,6 +288,7 @@ straw_hat = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 straw_hat.ingredients << [ingredient_orange_juice, ingredient_grenadine]
@@ -286,6 +302,7 @@ el_diablo = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_tequila,
   flavor: spicy,
+  category_list: '公式',
   user: user
 )
 el_diablo.ingredients << [ingredient_ginger_beer, ingredient_lime_juice]
@@ -299,6 +316,7 @@ ice_breaker = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 ice_breaker.ingredients << [ingredient_lemon_juice, ingredient_soda]
@@ -312,6 +330,7 @@ brave_blue = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 brave_blue.ingredients << [ingredient_blue_curacao, ingredient_soda]
@@ -325,6 +344,7 @@ matador = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_tequila,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 matador.ingredients << [ingredient_pineapple_juice, ingredient_lime_juice]
@@ -338,6 +358,7 @@ mexican = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_tequila,
   flavor: spicy,
+  category_list: '公式',
   user: user
 )
 mexican.ingredients << [ingredient_tabasco]
@@ -351,6 +372,7 @@ mockingbird = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 mockingbird.ingredients << [ingredient_sugar, ingredient_egg_white]
@@ -363,6 +385,7 @@ screwdriver = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 screwdriver.ingredients << [ingredient_orange_juice]
@@ -375,6 +398,7 @@ moscow_mule = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_vodka,
   flavor: spicy,
+  category_list: '公式',
   user: user
 )
 moscow_mule.ingredients << [ingredient_ginger_ale, ingredient_lime]
@@ -387,6 +411,7 @@ salty_dog = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_vodka,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 salty_dog.ingredients << [ingredient_grapefruit_juice, ingredient_salt]
@@ -399,6 +424,7 @@ bloody_mary = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: spicy,
+  category_list: '公式',
   user: user
 )
 bloody_mary.ingredients << [ingredient_tomato_juice, ingredient_tabasco, ingredient_lemon_juice]
@@ -411,6 +437,7 @@ sea_breeze = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 sea_breeze.ingredients << [ingredient_cranberry_juice, ingredient_grapefruit_juice]
@@ -423,6 +450,7 @@ cosmopolitan = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 cosmopolitan.ingredients << [ingredient_triple_sec, ingredient_cranberry_juice, ingredient_lime]
@@ -434,6 +462,7 @@ bull_shot = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: spicy,
+  category_list: '公式',
   user: user
 )
 bull_shot.ingredients << [ingredient_beef_broth, ingredient_tabasco]
@@ -445,6 +474,7 @@ sex_on_the_beach = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 sex_on_the_beach.ingredients << [ingredient_peach_liqueur, ingredient_cranberry_juice, ingredient_orange_juice]
@@ -456,6 +486,7 @@ long_island_iced_tea = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_vodka,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 long_island_iced_tea.ingredients << [ingredient_gin, ingredient_rum, ingredient_triple_sec, ingredient_lemon_juice,
@@ -468,6 +499,7 @@ balalaika = Recipe.create!(
   difficulty: difficulty_medium,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 balalaika.ingredients << [ingredient_triple_sec, ingredient_lemon_juice]
@@ -479,6 +511,7 @@ kamikaze = Recipe.create!(
   difficulty: difficulty_medium,
   base_liquor: base_vodka,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 kamikaze.ingredients << [ingredient_triple_sec, ingredient_lime]
@@ -490,6 +523,7 @@ black_russian = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_vodka,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 black_russian.ingredients << [ingredient_coffee_liqueur]
@@ -501,6 +535,7 @@ cerbellan_nicola = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_vodka,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 cerbellan_nicola.ingredients << [ingredient_lemon_juice, ingredient_soda]
@@ -513,6 +548,7 @@ daiquiri = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 daiquiri.ingredients << [ingredient_lime_juice, ingredient_sugar]
@@ -526,6 +562,7 @@ mojito = Recipe.create!(
   difficulty: difficulty_medium,
   base_liquor: base_rum,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 mojito.ingredients << [ingredient_mint, ingredient_lime_juice, ingredient_soda, ingredient_sugar]
@@ -539,6 +576,7 @@ cleopatra = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 cleopatra.ingredients << [ingredient_grenadine, ingredient_lemon_juice]
@@ -552,6 +590,7 @@ pina_colada = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 pina_colada.ingredients << [ingredient_coconut_milk, ingredient_pineapple_juice]
@@ -565,6 +604,7 @@ mary_pickford = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 mary_pickford.ingredients << [ingredient_grenadine, ingredient_pineapple_juice, ingredient_maraschino]
@@ -578,6 +618,7 @@ platinum_blonde = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 platinum_blonde.ingredients << [ingredient_champagne, ingredient_cream]
@@ -591,6 +632,7 @@ cuba_libre = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 cuba_libre.ingredients << [ingredient_coke, ingredient_lime]
@@ -604,6 +646,7 @@ xyzy = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 xyzy.ingredients << [ingredient_lime_juice, ingredient_grenadine]
@@ -617,6 +660,7 @@ mai_tai = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 mai_tai.ingredients << [ingredient_orange_juice, ingredient_orgeat_syrup, ingredient_lime_juice]
@@ -630,6 +674,7 @@ blue_hawaii = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_rum,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 blue_hawaii.ingredients << [ingredient_blue_curacao, ingredient_pineapple_juice, ingredient_sweet_and_sour]
@@ -643,6 +688,7 @@ manhattan = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_whiskey,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 manhattan.ingredients << [ingredient_vermouth]
@@ -655,6 +701,7 @@ scotch_collins = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_scotch,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 scotch_collins.ingredients << [ingredient_soda, ingredient_lemon_juice, ingredient_sugar]
@@ -667,6 +714,7 @@ highland_cooler = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_scotch,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 highland_cooler.ingredients << [ingredient_soda, ingredient_lemon_juice, ingredient_sugar]
@@ -679,6 +727,7 @@ old_fashioned = Recipe.create!(
   difficulty: difficulty_medium,
   base_liquor: base_whiskey,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 old_fashioned.ingredients << [ingredient_sugar, ingredient_bitters]
@@ -691,6 +740,7 @@ rusty_nail = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_scotch,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 rusty_nail.ingredients << [ingredient_drambuie]
@@ -703,6 +753,7 @@ new_york = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_whiskey,
   flavor: sweet,
+  category_list: '公式',
   user: user
 )
 new_york.ingredients << [ingredient_vermouth, ingredient_bitters]
@@ -715,6 +766,7 @@ mint_julep = Recipe.create!(
   difficulty: difficulty_medium,
   base_liquor: base_whiskey,
   flavor: refreshing,
+  category_list: '公式',
   user: user
 )
 mint_julep.ingredients << [ingredient_mint, ingredient_sugar, ingredient_water]
@@ -727,6 +779,7 @@ godfather = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_scotch,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 godfather.ingredients << [ingredient_amaretto]
@@ -739,6 +792,7 @@ rob_roy = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_scotch,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 rob_roy.ingredients << [ingredient_vermouth]
@@ -751,6 +805,7 @@ irish_coffee = Recipe.create!(
   difficulty: difficulty_easy,
   base_liquor: base_irish_whiskey,
   flavor: bitter,
+  category_list: '公式',
   user: user
 )
 irish_coffee.ingredients << [ingredient_coffee, ingredient_sugar, ingredient_cream]
@@ -763,6 +818,7 @@ whiskey_sour = Recipe.create!(
   difficulty: difficulty_advanced,
   base_liquor: base_whiskey,
   flavor: sour,
+  category_list: '公式',
   user: user
 )
 whiskey_sour.ingredients << [ingredient_lemon_juice, ingredient_sugar, ingredient_egg_white]
