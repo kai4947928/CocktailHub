@@ -9,30 +9,32 @@
   </li>
 </ul>
 
-<div id="official" class="tab-pane fade show active">
-  <h1>公式カクテル一覧</h1>
-  <% if @official_recipes.any? %>
-    <div class="col">
-      <% @official_recipes.each do |recipe| %>
-        <%= render partial: "recipes/recipes-card", locals: { recipe: recipe } %>
-      <% end %>
-    </div>
-  <% else %>
-    <p>カクテルが見つかりませんでした。</p>
-  <% end %>
-  <%= paginate @official_recipes, theme: 'bootstrap-5' %>
-</div>
+<div class="tab-content">
+  <div id="official" class="tab-pane fade show active">
+    <h1>公式カクテル一覧</h1>
+    <% if @official_recipes.any? %>
+      <div class="col">
+        <% @official_recipes.each do |recipe| %>
+          <%= render partial: "recipes/recipes-card", locals: { recipe: recipe } %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>カクテルが見つかりませんでした。</p>
+    <% end %>
+    <%= paginate @official_recipes, theme: 'bootstrap-5' %>
+  </div>
 
-<div id="post" class="tab-pane fade">
-  <h1>投稿カクテル一覧</h1>
-  <% if @post_recipes.any? %>
-    <div class="col">
-      <% @post_recipes.each do |recipe| %>
-        <%= render partial: "recipes/recipes-card", locals: { recipe: recipe } %>
-      <% end %>
-    </div>
-  <% else %>
-    <p>投稿されたカクテルが見つかりませんでした。</p>
-  <% end %>
-  <%= paginate @post_recipes, theme: 'bootstrap-5' %>
+  <div id="post" class="tab-pane fade">
+    <h1>投稿カクテル一覧</h1>
+    <% if @post_recipes.any? %>
+      <div class="col">
+        <% @post_recipes.each do |recipe| %>
+          <%= render partial: "recipes/recipes-card", locals: { recipe: recipe } %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>投稿されたカクテルが見つかりませんでした。</p>
+    <% end %>
+    <%= paginate @post_recipes, theme: 'bootstrap-5' %>
+  </div>
 </div>

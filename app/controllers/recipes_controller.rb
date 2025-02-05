@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
 
     @post_recipes = @q.result.includes(:difficulty, :base_liquor)
                     .tagged_with("投稿")
+                    .where.not(id: Recipe.tagged_with("公式").select(:id))
                     .distinct
                     .page(params[:post_page])
   end
