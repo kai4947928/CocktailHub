@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Recipe < ApplicationRecord
+  acts_as_taggable_on :categories
+
+  before_create :add_default_tag
+
   belongs_to :user
   belongs_to :difficulty
   belongs_to :base_liquor
@@ -26,9 +30,15 @@ class Recipe < ApplicationRecord
     %w[name base_liquor_id difficulty_id]
   end
 
-  def self.ransackable_associations(_auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)#必要なのか精査する必要がある
     %w[base_liquor difficulty flavor ingredients parent_recipe recipe_ingredients user]
   end
 
   enum alcohol_strength: { weak: 0, medium: 1, strong: 2 }
+
+  private
+
+  def add_default_tag
+    self.category_list.add("投稿") unless category_list.include?("投稿")
+  end
 end

@@ -5,16 +5,15 @@ class RecipesController < ApplicationController
 
   def index
     @q = Recipe.ransack(params[:q])
-    if params[:q] && params[:q][:search].present?
-      keyword = params[:q][:search]
-      @q.name_cont = keyword
-    end
-    @recipes = @q.result.includes(:difficulty, :base_liquor).distinct.page(params[:page])
-  end
+    @official_recipes = @q.result.includes(:difficulty, :base_liquor)
+                        .tagged_with("公式")
+                        .distinct
+                        .page(params[:official_page])
 
-  def autocomplete
-    @recipes = Recipe.where('name LIKE ?', "%#{params[:query]}%")
-    render json: @recipes.pluck(:name)
+    @post_recipes = @q.result.includes(:difficulty, :base_liquor)
+                    .tagged_with("投稿")
+                    .distinct
+                    .page(params[:post_page])
   end
 
   def show
@@ -34,17 +33,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
-    @recipe.user = current_user
+    @recipe = current_user.recipes.build(recipe_params)
 
     if @recipe.save
-      redirect_to @recipe, notice: 'カクテルが投稿されました！'
+      redirect_to @recipe, notice: "カクテルが投稿できました！"
     else
-      flash.now[:alert] = 'カクテルの投稿に失敗しました。'
-      @base_liquors = BaseLiquor.all
-      @difficulties = Difficulty.all
-      @ingredients = Ingredient.all
-      render :new
+      flash.now[:alert] = "カクテルの投稿に失敗しました。"
+      render :new, status: :unprocessable_entity
     end
   end
 

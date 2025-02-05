@@ -72,8 +72,14 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+
   gem 'selenium-webdriver'
+
   gem 'webdrivers'
+
+  gem 'shoulda-matchers', '~> 5.0'
+
+  gem 'pry-byebug'
 end
 
 gem 'devise', '~> 4.9'
@@ -98,3 +104,5 @@ gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 gem 'image_processing', '~> 1.13'
 
 gem 'ruby-vips', '~> 2.2'
+
+gem "acts-as-taggable-on", "~> 11.0"
