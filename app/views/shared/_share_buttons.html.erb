@@ -1,0 +1,17 @@
+<div class="d-flex gap-2 mt-4">
+  <!-- X（旧Twitter）シェアボタン -->
+  <%= link_to "https://twitter.com/intent/tweet?text=#{URI.encode_www_form_component("#{recipe.name} 美味しいよ！")}&url=#{URI.encode_www_form_component(request.original_url)}",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              class: "btn btn-dark d-flex align-items-center" do %>
+    <i class="fa-brands fa-x-twitter me-2"></i> シェア
+  <% end %>
+
+  <!-- Facebookシェアボタン -->
+  <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{URI.encode_www_form_component(request.original_url)}",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              class: "btn btn-primary d-flex align-items-center" do %>
+    <i class="fa-brands fa-facebook-f me-2"></i> シェア
+  <% end %>
+</div>

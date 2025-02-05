@@ -4,19 +4,19 @@
     <div class="col text-center">
       <div class="d-flex justify-content-between align-items-center">
         <!-- タイトル -->
-        <h1 class="display-4 mb-0" style="color: #1d2a3a;"><%= @recipe.name %></h1>
+        <h1 class="display-4 fw-bold text-primary"><%= @recipe.name %></h1>
 
         <!-- お気に入りボタン -->
         <% if user_signed_in? %>
           <% if current_user.favorite_recipes.include?(@recipe) %>
             <%= button_to recipe_favorite_path(@recipe, current_user.favorites.find_by(recipe: @recipe)),
-                method: :delete, class: "btn btn-link", data: { turbo_stream: true } do %>
-              <i class="bi bi-star-fill" style="color: gold;"></i>
+                method: :delete, class: "btn btn-outline-warning", data: { turbo_stream: true } do %>
+              <i class="bi bi-star-fill"></i> お気に入り
             <% end %>
           <% else %>
             <%= button_to recipe_favorites_path(@recipe),
-                method: :post, class: "btn btn-link", data: { turbo_stream: true } do %>
-              <i class="bi bi-star" style="color: grey;"></i>
+                method: :post, class: "btn btn-outline-secondary", data: { turbo_stream: true } do %>
+              <i class="bi bi-star"></i> お気に入り
             <% end %>
           <% end %>
         <% end %>
@@ -28,18 +28,18 @@
   <div class="row align-items-center">
     <!-- メイン情報 -->
     <div class="col-md-6">
-      <h3 style="color: #1d2a3a;">レシピ情報</h3>
-      <ul class="list-unstyled" style="color: #1d2a3a;">
+      <h3 class="fw-bold text-secondary">レシピ情報</h3>
+      <ul class="list-unstyled text-muted">
         <li><strong>アルコール度数:</strong> <%= t("activerecord.attributes.recipe.alcohol_strength.#{@recipe.alcohol_strength}") %></li>
         <li><strong>難易度:</strong> <%= @recipe.difficulty.name %></li>
         <li><strong>ベース:</strong> <%= @recipe.base_liquor.name %></li>
       </ul>
 
-      <h4 style="color: #1d2a3a;">材料</h4>
-      <ul style="color: #1d2a3a;">
+      <h4 class="fw-bold text-secondary mt-4">材料</h4>
+      <ul class="text-muted">
         <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
           <li>
-            <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>
+            <i class="bi bi-dot"></i> <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>
           </li>
         <% end %>
       </ul>
@@ -48,9 +48,9 @@
     <!-- 画像 -->
     <div class="col-md-6 text-center">
       <% if @recipe.image.attached? %>
-        <%= image_tag @recipe.image.variant(resize_to_fill: [300, 300]), class: "rounded shadow" %>
+        <%= image_tag @recipe.image.variant(resize_to_fill: [350, 350]), class: "rounded shadow-lg img-fluid" %>
       <% else %>
-        <p style="color: #1d2a3a;">画像がありません</p>
+        <p class="text-muted">画像がありません</p>
       <% end %>
     </div>
   </div>
@@ -58,13 +58,18 @@
   <!-- 手順とフレーバー -->
   <div class="row mt-4">
     <div class="col-md-12">
-      <h4 style="color: #1d2a3a;">手順</h4>
-      <p style="color: #1d2a3a;"><%= @recipe.procedure %></p>
+      <h4 class="fw-bold text-secondary">手順</h4>
+      <p class="text-muted"><%= @recipe.procedure %></p>
 
       <% if @recipe.flavor.present? %>
-        <h4 style="color: #1d2a3a;">フレーバー</h4>
-        <p style="color: #1d2a3a;"><%= @recipe.flavor.name %></p>
+        <h4 class="fw-bold text-secondary">フレーバー</h4>
+        <p class="text-muted"><%= @recipe.flavor.name %></p>
       <% end %>
     </div>
+  </div>
+
+  <!-- シェアボタン -->
+  <div class="mt-4 text-center">
+    <%= render "shared/share_buttons", recipe: @recipe %>
   </div>
 </div>
