@@ -58,15 +58,16 @@
         class: "form-select" %>
     </div>
 
-    <!-- 副材料と分量 -->
-    <div class="form-group mb-3">
-      <%= form.label :recipe_ingredients, "副材料と分量", class: "form-label" %>
+    <div class="form-group">
+      <%= form.label "副材料と分量" %>
       <div id="ingredients-list">
         <% @ingredients.each do |ingredient| %>
-          <div class="form-check mb-2 d-flex align-items-center">
-            <%= check_box_tag "recipe[ingredients][#{ingredient.id}][selected]", "1", false, id: "ingredient_#{ingredient.id}", class: "form-check-input me-2" %>
-            <%= label_tag "ingredient_#{ingredient.id}", ingredient.name, class: "form-check-label me-3" %>
-            <%= number_field_tag "recipe[ingredients][#{ingredient.id}][quantity]", nil, class: "form-control w-25", placeholder: "分量", min: 1, disabled: true, id: "quantity_#{ingredient.id}" %>
+          <div class="form-check">
+            <%= form.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |ri_form| %>
+              <%= ri_form.hidden_field :ingredient_id, value: ingredient.id %>
+              <%= ri_form.label :ingredient_id, ingredient.name, class: "form-check-label" %>
+              <%= ri_form.number_field :quantity, class: "form-control", placeholder: "分量を入力", min: 1 %>
+            <% end %>
           </div>
         <% end %>
       </div>
