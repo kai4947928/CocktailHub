@@ -274,7 +274,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :google_oauth2, ENV.fetch("GOOGLE_CLIENT_ID"), ENV.fetch("GOOGLE_CLIENT_SECRET"), {
     scope: "userinfo.email, userinfo.profile",
-    prompt: "select_account"
+    prompt: "select_account",
     redirect_uri: "https://cocktail-hub-74469733b659.herokuapp.com/users/auth/google_oauth2/callback"
   }
 
