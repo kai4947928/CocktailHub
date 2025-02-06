@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "**どんなサービスなのかを３行で説明してください。**",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kai4947928/CocktailHub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kai4947928/CocktailHub/issues"
+  },
+  "homepage": "https://github.com/kai4947928/CocktailHub#readme",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2"
+  }
+}
