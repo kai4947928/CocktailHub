@@ -1,4 +1,4 @@
-FROM ruby:3.2
+FROM ruby:3.2.6
 
 # 必要なパッケージをインストール
 RUN apt-get update -qq && apt-get install -y postgresql-client \
