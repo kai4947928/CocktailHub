@@ -1,0 +1,7 @@
+<div class="autocomplete-results">
+  <% @recipes.each do |recipe| %>
+    <li class="autocomplete-item" data-id="<%= recipe.id %>" data-name="<%= recipe.name %>">
+      <%= recipe.name %>
+    </li>
+  <% end %>
+</div>

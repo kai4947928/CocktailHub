@@ -17,6 +17,17 @@ class RecipesController < ApplicationController
                     .page(params[:post_page])
   end
 
+  def autocomplete
+    query = params[:q] || ""
+    recipes = Recipe.where("name LIKE ?", "%#{query}%")
+    @recipes = recipes
+
+    respond_to do |format|
+      format.html { render "autocomplete" }
+      format.json { render json: recipes.map { |recipe| { id: recipe.id, name: recipe.name } } }
+    end
+  end
+
   def show
     @user = @recipe.user
   end

@@ -14,9 +14,11 @@
         class: 'form-select' %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_recipes_path %>" role="combobox">
       <%= f.label :name_cont, 'カクテル名で検索', class: 'form-label fw-bold text-secondary' %>
-      <%= f.text_field :name_cont, class: 'form-control', placeholder: '検索キーワードを入力' %>
+      <%= f.text_field :name_cont, data: { autocomplete_target: 'input' }, class: 'form-control', placeholder: '検索キーワードを入力' %>
+      <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+      <ul class="autocomplete-results" data-autocomplete-target="results"></ul>
     </div>
 
     <div class="col-md-4">
