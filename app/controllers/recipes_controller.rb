@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
     @recipes = recipes
 
     respond_to do |format|
-      format.html { render "autocomplete" }
+      format.html { render "autocomplete", layout: false }
       format.json { render json: recipes.map { |recipe| { id: recipe.id, name: recipe.name } } }
     end
   end

@@ -19,3 +19,14 @@
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+.autocomplete-results {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.list-group-item:hover {
+  background-color: #f1f1f1;  // 背景色を変更
+  transform: scale(1.05);      // 少し拡大
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  // 影を追加
+}

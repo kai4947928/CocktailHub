@@ -1,6 +1,6 @@
 <div class="autocomplete-results">
   <% @recipes.each do |recipe| %>
-    <li class="autocomplete-item" data-id="<%= recipe.id %>" data-name="<%= recipe.name %>">
+    <li class="list-group-item" role="option" data-autocomplete-value="<%= recipe.id %>" data-autocomplete-label="<%= recipe.name %>">
       <%= recipe.name %>
     </li>
   <% end %>
