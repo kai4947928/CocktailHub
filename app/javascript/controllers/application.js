@@ -1,4 +1,11 @@
 import { Application } from "@hotwired/stimulus"
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading";
+import { Autocomplete } from "stimulus-autocomplete"
+
 const application = Application.start()
-eagerLoadControllersFrom("controllers", application);
+application.register('autocomplete', Autocomplete)
+
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+
+export { application }
