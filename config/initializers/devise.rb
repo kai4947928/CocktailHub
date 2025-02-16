@@ -275,7 +275,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, ENV.fetch("GOOGLE_CLIENT_ID"), ENV.fetch("GOOGLE_CLIENT_SECRET"), {
     scope: "userinfo.email, userinfo.profile",
     prompt: "select_account",
-    redirect_uri: "http://localhost:3000/users/auth/google_oauth2/callback"
+    redirect_uri: redirect_uri
   }
 
   # ==> Warden configuration
