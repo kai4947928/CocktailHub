@@ -36,7 +36,7 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= button_to user_google_oauth2_omniauth_authorize_path, class: 'btn', style: 'padding: 0;' do %>
+            <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: 'btn', style: 'padding: 0;' do %>
               <%= image_tag 'google_login_button1.png', alt: 'Googleでログイン', class: 'google-login-btn', style: 'width: 150px; height: auto; border-radius: 8px; border: 1px solid #c0c0c0; transition: transform 0.3s;', onmouseover: "this.style.transform='scale(1.05)';", onmouseout: "this.style.transform='scale(1)';" %>
             <% end %>
           </li>
