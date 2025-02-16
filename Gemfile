@@ -108,3 +108,5 @@ gem 'ruby-vips', '~> 2.2'
 gem "acts-as-taggable-on", "~> 11.0"
 
 gem "aws-sdk-s3", "~> 1.180"
+
+gem "meta-tags", "~> 2.22"
