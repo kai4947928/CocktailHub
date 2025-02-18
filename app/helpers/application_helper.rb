@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def default_meta_tags
+  def default_meta_tags(title: '最高のカクテルレシピ集', description: '簡単に作れる美味しいカクテルのレシピを紹介！', image: 'default_ogp.png')
     {
       site: 'カクテルレシピアプリ',
       title: '最高のカクテルレシピ集',

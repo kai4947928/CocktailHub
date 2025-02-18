@@ -30,6 +30,11 @@ class RecipesController < ApplicationController
 
   def show
     @user = @recipe.user
+
+    set_meta_tags helpers.default_meta_tags(
+      title: @recipe.name,
+      image: @recipe.image.attached? ? url_for(@recipe.image) : 'default_ogp.png'
+    )
   end
 
   def edit
@@ -47,6 +52,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
+    @difficulties = Difficulty.all
 
     if @recipe.save
       redirect_to @recipe, notice: "カクテルが投稿できました！"
