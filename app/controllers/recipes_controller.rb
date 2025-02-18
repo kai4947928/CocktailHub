@@ -31,9 +31,13 @@ class RecipesController < ApplicationController
   def show
     @user = @recipe.user
 
+    image_url = @recipe.image.attached? ? url_for(@recipe.image) : helpers.asset_url('default_ogp.png')
+
+    Rails.logger.debug "🔥 OGP画像URL: #{image_url}"
+
     set_meta_tags helpers.default_meta_tags(
       title: @recipe.name,
-      image: @recipe.image.attached? ? url_for(@recipe.image) : 'default_ogp.png'
+      image: image_url
     )
   end
 
