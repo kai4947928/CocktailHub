@@ -25,6 +25,7 @@ services:
       POSTGRES_PASSWORD: cocktail_postgres_password
       POSTGRES_DB: cocktail_hub_development
       DATABASE_URL: postgres://cocktail_postgres_user:cocktail_postgres_password@db/cocktail_hub_development
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
 
 volumes:
   postgres-data:

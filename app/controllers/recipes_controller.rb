@@ -92,6 +92,22 @@ class RecipesController < ApplicationController
     @favorite_recipes = current_user.favorite_recipes
   end
 
+  def suggest
+  end
+
+  def generate_suggestion
+    base = params[:base]
+    taste = params[:taste]
+
+    service = OpenaiService.new
+    @suggestion = service.suggest_cocktail(base, taste)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to suggest_recipes_path, notice: @suggestion }
+    end
+  end
+
   private
 
   def set_recipe
@@ -100,7 +116,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :image, :alcohol_strength, :flavor_id, :procedure, :difficulty_id, :base_liquor_id,
-                                   recipe_ingredients_attributes: %i[ingredient_id quantity _destroy])
+    recipe_ingredients_attributes: %i[ingredient_id quantity _destroy])
   end
 
   def correct_user
