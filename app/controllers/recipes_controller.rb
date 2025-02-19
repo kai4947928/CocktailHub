@@ -72,6 +72,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = current_user.recipes.find(params[:id])
+    @ingredients = Ingredient.all
 
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'カクテルが更新されました！'

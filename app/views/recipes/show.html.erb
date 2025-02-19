@@ -39,7 +39,7 @@
       <ul class="text-muted">
         <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
           <li>
-            <i class="bi bi-dot"></i> <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>
+            <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>ml
           </li>
         <% end %>
       </ul>
