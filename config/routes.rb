@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       get :my_recipes
       get :autocomplete
       get :favorites
+      get :suggest
+      post :generate_suggestion
     end
   end
 end

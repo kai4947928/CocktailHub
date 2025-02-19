@@ -1,0 +1,5 @@
+<%= turbo_stream.update "suggestion_frame" do %>
+  <h2>おすすめのアレンジカクテル</h2>
+  <p><%= simple_format(@suggestion) %></p>
+  <%= link_to "もう一度提案", suggest_recipes_path, class: "btn btn-primary" %>
+<% end %>
