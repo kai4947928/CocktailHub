@@ -2,6 +2,7 @@
 
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
 
   def index
     @q = Recipe.ransack(params[:q])
@@ -57,6 +58,8 @@ class RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.build(recipe_params)
     @difficulties = Difficulty.all
+    @base_liquors = BaseLiquor.all
+    @ingredients = Ingredient.all
 
     if @recipe.save
       redirect_to @recipe, notice: "カクテルが投稿できました！"
