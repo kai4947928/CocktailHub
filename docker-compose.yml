@@ -26,6 +26,10 @@ services:
       POSTGRES_DB: cocktail_hub_development
       DATABASE_URL: postgres://cocktail_postgres_user:cocktail_postgres_password@db/cocktail_hub_development
       OPENAI_API_KEY: ${OPENAI_API_KEY}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      S3_BUCKET_NAME: ${S3_BUCKET_NAME}
 
 volumes:
   postgres-data:
