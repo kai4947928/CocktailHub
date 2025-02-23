@@ -1,5 +1,12 @@
 ja:
+  devise:
+    omniauth_callbacks:
+      success: 'ログイン成功'
+    sessions:
+      signed_out: 'ログアウトしました'
+
   activerecord:
     errors:
       messages:
         record_invalid: "レコードが無効です"
+

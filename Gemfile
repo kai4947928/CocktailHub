@@ -80,6 +80,10 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
 
   gem 'pry-byebug'
+
+  gem 'omniauth-test'
+
+  gem 'rails-controller-testing'
 end
 
 gem 'devise', '~> 4.9'

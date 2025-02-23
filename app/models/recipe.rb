@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Recipe < ApplicationRecord
-  acts_as_taggable_on :categories
+  acts_as_taggable_on :category
 
   before_create :add_default_tag
 
