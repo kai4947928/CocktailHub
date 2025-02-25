@@ -1,17 +1,22 @@
-<%= render 'search_form'%>
+<%= render 'search_form'%> <!-- 検索フォームのテンプレート -->
 
-<ul class="nav nav-tabs mb-3">
+<!-- ナビゲーションタブ（公式カクテル／投稿カクテル） -->
+<ul class="nav nav-tabs mb-3" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
   <li class="nav-item">
-    <a class="nav-link active" data-bs-toggle="tab" href="#official">公式カクテル</a>
+    <a class="nav-link active" data-bs-toggle="tab" href="#official" style="color: #1d2a3a; transition: color 0.3s;" onmouseover="this.style.color='#ffd700';" onmouseout="this.style.color='#1d2a3a';">公式カクテル</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" href="#post">投稿カクテル</a>
+    <a class="nav-link" data-bs-toggle="tab" href="#post" style="color: #1d2a3a; transition: color 0.3s;" onmouseover="this.style.color='#ffd700';" onmouseout="this.style.color='#1d2a3a';">投稿カクテル</a>
   </li>
 </ul>
 
+<!-- アレンジカクテル提案ボタン -->
+  <%= link_to "アレンジカクテルを提案", suggest_recipes_path, class: "btn btn-primary", style: "background-color: #ffd700; border: none; color: #1d2a3a; border-radius: 5px; transition: background-color 0.3s;", onmouseover: "this.style.backgroundColor='#f7cc00';", onmouseout: "this.style.backgroundColor='#ffd700';" %>
+
 <div class="tab-content">
+  <!-- 公式カクテルタブ -->
   <div id="official" class="tab-pane fade show active">
-    <h1>公式カクテル一覧</h1>
+    <h1 class="text-dark" style="color: #1d2a3a;">公式カクテル一覧</h1>
     <% if @official_recipes.any? %>
       <div class="col">
         <% @official_recipes.each do |recipe| %>
@@ -19,15 +24,14 @@
         <% end %>
       </div>
     <% else %>
-      <p>カクテルが見つかりませんでした。</p>
+      <p class="text-dark" style="color: #1d2a3a;">カクテルが見つかりませんでした。</p>
     <% end %>
     <%= paginate @official_recipes, theme: 'bootstrap-5' %>
   </div>
 
-  <%= link_to "アレンジカクテルを提案", suggest_recipes_path, class: "btn btn-primary" %>
-
+  <!-- 投稿カクテルタブ -->
   <div id="post" class="tab-pane fade">
-    <h1>投稿カクテル一覧</h1>
+    <h1 class="text-dark" style="color: #1d2a3a;">投稿カクテル一覧</h1>
     <% if @post_recipes.any? %>
       <div class="col">
         <% @post_recipes.each do |recipe| %>
@@ -35,7 +39,7 @@
         <% end %>
       </div>
     <% else %>
-      <p>投稿されたカクテルが見つかりませんでした。</p>
+      <p class="text-dark" style="color: #1d2a3a;">投稿されたカクテルが見つかりませんでした。</p>
     <% end %>
     <%= paginate @post_recipes, theme: 'bootstrap-5' %>
   </div>

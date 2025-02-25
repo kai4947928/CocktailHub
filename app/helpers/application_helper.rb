@@ -22,6 +22,13 @@ module ApplicationHelper
         title: title,
         description: description,
         image: image
+      },
+      facebook: {
+        card: 'summary_large_image',
+        site: '@your_facebook_handle',
+        title: title,
+        description: description,
+        image: image
       }
     }
   end

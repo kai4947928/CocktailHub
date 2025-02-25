@@ -1,56 +1,142 @@
-<div class="container my-5">
-  <h1 class="display-4 text-center mb-4" style="color: #1d2a3a;">ようこそ、Cocktail-Hubへ!</h1>
-  <p class="text-center lead mb-5" style="color: #1d2a3a;">
-    Cocktail-Hubは、カクテルの世界を探索し、新しいアレンジを楽しむためのアプリです。
-    お気に入りのカクテルを探したり、自分だけのカクテルを投稿してみましょう！
-  </p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cocktail-Hub</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
 
-  <div class="container my-5 p-4 rounded" style="background-color: #fdf7e3; border: 1px solid #d2b48c;">
-    <h2 class="text-center mb-4" style="color: #1d2a3a;">このアプリの使い方</h2>
-    <p style="color: #1d2a3a;">
-      お家にあるお酒（ベース）と難易度で、作れるカクテルを簡単に検索できます！<br>
-      また、オリジナルカクテルの投稿もOK!
-    </p>
+    /* ヒーローセクション */
+    .hero {
+      background-image: url(<%= asset_path('app-background-image.jpg') %>); /* ここに背景画像のパスを設定 */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
 
-    <div class="row my-5">
-      <div class="col-md-6">
-        <h3 class="mb-3" style="color: #1d2a3a;">難易度について</h3>
-        <ul style="color: #1d2a3a;">
-          <li><strong>初級：</strong>簡単に作れるカクテル</li>
-          <li><strong>中級：</strong>少しテクニックが必要なカクテル</li>
-          <li><strong>上級：</strong>プロっぽい技法を使ったカクテル</li>
-        </ul>
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* ダークオーバーレイ */
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+
+    .hero a {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #1d2a3a;
+      background-color: #ffd700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .hero a:hover {
+      background-color: #f7cc00;
+      transform: scale(1.1);
+    }
+
+    /* 使い方セクション */
+    .how-to {
+      padding: 50px 20px;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+
+    .how-to h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #1d2a3a;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .step {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 250px;
+    }
+
+    .step h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #1d2a3a;
+    }
+
+    .step p {
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ようこそ、Cocktail-Hubへ！</h1>
+      <p>あなたの完璧なカクテルを見つけよう</p>
+      <a href="<%= recipes_path %>">カクテル一覧を見る</a>
+    </div>
+  </section>
+
+  <!-- 使い方セクション -->
+  <section class="how-to">
+    <h2>🍸 アプリの出来ること</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. カクテルを探す</h3>
+        <p>ベースや味で好みのカクテルを検索できます。</p>
       </div>
-      <div class="col-md-6">
-        <h3 class="mb-3" style="color: #1d2a3a;">技法の説明</h3>
-        <ul style="color: #1d2a3a;">
-          <li><strong>ステア：</strong>スプーンで混ぜるだけ</li>
-          <li><strong>ビルド：</strong>材料を直接グラスに注ぐ</li>
-          <li><strong>ブレンド：</strong>ミキサーで混ぜる</li>
-          <li><strong>シェイク：</strong>シェイカーで振る</li>
-        </ul>
+      <div class="step">
+        <h3>2. オリジナルを投稿</h3>
+        <p>自分だけのカクテルレシピを投稿して共有しましょう。</p>
+      </div>
+      <div class="step">
+        <h3>3. アレンジ提案</h3>
+        <p>AIを使ってお好みに合わせたアレンジカクテルを提案します。</p>
       </div>
     </div>
+  </section>
 
-    <div class="my-4">
-      <h3 style="color: #1d2a3a;">マイページの機能</h3>
-      <p style="color: #1d2a3a;">
-        投稿したカクテルを確認したり、新しいカクテルを投稿できます。
-      </p>
-    </div>
-
-    <div class="my-4 text-center">
-      <h3 style="color: #1d2a3a;">さあ、はじめてみよう！</h3>
-      <p style="color: #1d2a3a;">
-        あなたのカクテルの世界を広げる準備はできましたか？<br>
-        新しいレシピを探して作ったり、オリジナルカクテルを投稿して楽しんでください！
-      </p>
-    </div>
-  </div>
-
-  <div class="text-center mt-5">
-    <a href="<%= recipes_path %>" class="btn btn-lg" style="background-color: #1d2a3a; color: #f5f5dc; border-radius: 8px; padding: 10px 20px; text-transform: uppercase; transition: background-color 0.3s, color 0.3s;">
-      カクテル一覧を見る
-    </a>
-  </div>
-</div>
+</body>
+</html>

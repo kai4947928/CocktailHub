@@ -10,3 +10,11 @@ ja:
       messages:
         record_invalid: "レコードが無効です"
 
+    attributes:
+      recipe:
+        alcohol_strength:
+          weak: "弱め(5%~15%)"
+          medium: "普通(16%~25%)"
+          strong: "強め(26%以上)"
+
+

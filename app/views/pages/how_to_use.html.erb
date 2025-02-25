@@ -1,101 +1,86 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>このアプリの使い方</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5dc;
-      color: #1d2a3a;
-    }
-    header {
-      background-color:
-      color: #f5f5dc;
-      padding: 10px 20px;
-      text-align: center;
-    }
-    h1, h2 {
-      margin: 20px 0;
-      color: #1d2a3a;
-    }
-    p {
-      margin: 10px 0;
-      padding: 0 20px;
-    }
-    ul {
-      margin: 10px 0 20px 20px;
-      padding: 0;
-    }
-    ul li {
-      margin-bottom: 10px;
-    }
-    strong {
-      color: #1d2a3a;
-    }
-    footer {
-      margin-top: 20px;
-      background-color: #1d2a3a;
-      color: #f5f5dc;
-      text-align: center;
-      padding: 10px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .highlight {
-      font-weight: bold;
-      color: #8b4513;
-    }
-  </style>
-</head>
-<body>
+<div class="container my-5">
+  <!-- ヘッダー -->
+  <h1 class="display-4 text-center mb-4" style="color: #fff; background-color: #1d2a3a; border-radius: 10px; padding: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">🍸 Cocktail-Hubの使い方 🍸</h1>
 
-  <header>
-    <h1>このアプリの使い方</h1>
-  </header>
-
-  <div class="container">
-    <p>
-      このアプリは、お家にあるお酒（ベース）とカクテルの難易度（技法）で検索していただき、<br>
-      今、作れるカクテルを見つけることができます！！
-    </p>
-
-    <p>
-      カクテルを投稿することもできるので、ぜひ挑戦してみてください！<br>
-      投稿したカクテルは、タブを切り替えることで、投稿したカクテル一覧の中で検索することができます。
-    </p>
-
-    <h2>カクテルの難易度の取り決め</h2>
-    <ul>
-      <li><strong>初級：</strong>ステアやビルドで作れるカクテル</li>
-      <li><strong>中級：</strong>ブレンドで作れるカクテル</li>
-      <li><strong>上級：</strong>シェイクで作れるカクテル</li>
+  <!-- カクテル検索セクション -->
+  <section class="mb-5">
+    <h2 class="h3 text-primary mb-3">🔍 1. カクテルを簡単検索！</h2>
+    <p>自宅でカクテルを作りたいけど、どれが自分に合っているか分からない？<strong>Cocktail-Hub</strong>なら、<strong>技法</strong>と<strong>難易度</strong>で自分にピッタリのカクテルを簡単に検索できます！</p>
+    <ul class="list-group mb-3" style="background-color: #f8f9fa; border-radius: 8px;">
+      <li class="list-group-item" style="border-radius: 8px;">
+        <strong>🟢 初級:</strong> ステアやビルドを使った、初心者でも簡単に作れるカクテル。
+      </li>
+      <li class="list-group-item" style="border-radius: 8px;">
+        <strong>🟡 中級:</strong> ブレンダーを使って、フローズン系のカクテルにも挑戦！
+      </li>
+      <li class="list-group-item" style="border-radius: 8px;">
+        <strong>🔴 上級:</strong> プロ気分で楽しめるシェイク技法の本格カクテル。
+      </li>
     </ul>
-
-    <h2>カクテルの技法の説明</h2>
-    <ul>
-      <li><strong>ステア：</strong>バースプーンで手早く混ぜる技法</li>
-      <li><strong>ビルド：</strong>直接グラスに作る技法</li>
-      <li><strong>ブレンド：</strong>ミキサーで混ぜて作る技法</li>
-      <li><strong>シェイク：</strong>シェイカーを振って作る技法</li>
+    <h5 class="mt-4">カクテルで使われる主な技法:</h5>
+    <ul class="list-group" style="background-color: #f8f9fa; border-radius: 8px;">
+      <li class="list-group-item" style="border-radius: 8px;"><strong>ステア:</strong> ミキシンググラスで材料をスプーンで丁寧に混ぜる技法。繊細な味わいを楽しめます。</li>
+      <li class="list-group-item" style="border-radius: 8px;"><strong>ビルド:</strong> 材料をそのままグラスに注ぐだけ。最もシンプルで手軽な方法。</li>
+      <li class="list-group-item" style="border-radius: 8px;"><strong>ブレンド:</strong> ミキサーで混ぜて作るフローズンカクテルなどに使われます。</li>
+      <li class="list-group-item" style="border-radius: 8px;"><strong>シェイク:</strong> シェイカーを使ってしっかりと材料を冷やし、空気を含ませたプロ仕様の技法。</li>
     </ul>
+  </section>
 
-    <h2>マイページからできること</h2>
-    <p>
-      マイページからカクテル投稿や投稿したカクテルを閲覧できます。
-    </p>
+  <!-- カクテル投稿セクション -->
+  <section class="mb-5">
+    <h2 class="h3 text-primary mb-3">🍹 2. 自分だけのカクテルを投稿しよう！</h2>
+    <p>オリジナルのカクテルレシピを<strong>Cocktail-Hub</strong>でシェアしよう！</p>
+    <h5>マイページでできること:</h5>
+    <ul class="list-group" style="background-color: #f8f9fa; border-radius: 8px;">
+      <li class="list-group-item" style="border-radius: 8px;">🍸 <strong>カクテル投稿:</strong> 自分で考えたレシピを世界に公開！</li>
+      <li class="list-group-item" style="border-radius: 8px;">⭐ <strong>お気に入り管理:</strong> 気に入ったカクテルを簡単にブックマーク。</li>
+      <li class="list-group-item" style="border-radius: 8px;">📋 <strong>自分の投稿確認:</strong> 過去に投稿したカクテルをいつでも見返せます。</li>
+    </ul>
+  </section>
 
-    <h2>投稿について</h2>
-    <p>
-      オリジナルカクテルやアレンジカクテルを投稿してみよう！！<br>
-      今後少しづつ、カクテルレシピを増やしていきます。
-    </p>
+  <!-- AI提案セクション -->
+  <section class="mb-5">
+    <h2 class="h3 text-primary mb-3">🤖 3. AIにオリジナルカクテルを提案してもらおう！</h2>
+    <p>「どんなカクテルを作ろうか迷う…」そんなときは、<strong>AIにおまかせ！</strong></p>
+    <ul class="list-group" style="background-color: #f8f9fa; border-radius: 8px;">
+      <li class="list-group-item" style="border-radius: 8px;">ベースのお酒や味の好みを入力すると、<strong>AIがあなた専用のオリジナルカクテル</strong>を提案してくれます！</li>
+      <li class="list-group-item" style="border-radius: 8px;">もしかすると、<strong>ガチャ気分で超ユニークなカクテル</strong>が生まれるかも！？ 🎲🍸</li>
+    </ul>
+  </section>
+
+
+    <a href="<%= recipes_path %>" class="btn btn-lg" style="background-color: #1d2a3a; color: #f5f5dc; border-radius: 8px; padding: 12px 25px; text-transform: uppercase; transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.backgroundColor='#37495a'; this.style.transform='scale(1.05)';" onmouseout="this.style.backgroundColor='#1d2a3a'; this.style.transform='scale(1)';">
+      カクテル一覧を見る
+    </a>
   </div>
-</html>
+</div>
+
+<!-- 背景全体 -->
+<style>
+  body {
+    background-color: #f0f8ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .list-group-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .list-group-item:hover {
+    background-color: #f1f1f1;
+  }
+</style>

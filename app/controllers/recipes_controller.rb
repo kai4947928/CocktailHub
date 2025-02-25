@@ -4,18 +4,13 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
 
-  def index
+  def index #カクテル一覧(公式・投稿レシピを表示)
     @q = Recipe.ransack(params[:q])
-    @official_recipes = @q.result.includes(:difficulty, :base_liquor)
-                        .tagged_with("公式")
-                        .distinct
-                        .page(params[:official_page])
+    base_query = @q.result.includes(:difficulty, :base_liquor).distinct
 
-    @post_recipes = @q.result.includes(:difficulty, :base_liquor)
-                    .tagged_with("投稿")
-                    .where.not(id: Recipe.tagged_with("公式").select(:id))
-                    .distinct
-                    .page(params[:post_page])
+    @official_recipes = base_query.tagged_with("公式").page(params[:official_page])
+
+    @post_recipes = base_query.tagged_with("投稿").where.not(id: Recipe.tagged_with("公式").select(:id)).page(params[:post_page])
   end
 
   def autocomplete
@@ -29,12 +24,9 @@ class RecipesController < ApplicationController
     end
   end
 
-  def show
+  def show #カクテル詳細
     @user = @recipe.user
-
     image_url = @recipe.image.attached? ? url_for(@recipe.image) : helpers.asset_url('default_ogp.png')
-
-    Rails.logger.debug "🔥 OGP画像URL: #{image_url}"
 
     set_meta_tags helpers.default_meta_tags(
       title: @recipe.name,
@@ -42,24 +34,19 @@ class RecipesController < ApplicationController
     )
   end
 
-  def edit
-    @recipe = current_user.recipes.find(params[:id])
+  def edit #カクテル編集
     @ingredients = Ingredient.all
   end
 
-  def new
+  def new #カクテル作成
     @recipe = Recipe.new(alcohol_strength: nil)
     @recipe.recipe_ingredients.build
-    @base_liquors = BaseLiquor.all
-    @difficulties = Difficulty.all
-    @ingredients = Ingredient.all
+    load_form_collections
   end
 
-  def create
+  def create #カクテル保存
     @recipe = current_user.recipes.build(recipe_params)
-    @difficulties = Difficulty.all
-    @base_liquors = BaseLiquor.all
-    @ingredients = Ingredient.all
+    load_form_collections
 
     if @recipe.save
       redirect_to @recipe, notice: "カクテルが投稿できました！"
@@ -69,12 +56,11 @@ class RecipesController < ApplicationController
     end
   end
 
-  def my_recipes
-    @recipes = user_signed_in? ? current_user.recipes : []
+  def my_recipes #ユーザーの投稿したカクテル一覧
+    @recipes = current_user&.recipes || []
   end
 
-  def update
-    @recipe = current_user.recipes.find(params[:id])
+  def update #カクテル更新
     @ingredients = Ingredient.all
 
     if @recipe.update(recipe_params)
@@ -85,25 +71,20 @@ class RecipesController < ApplicationController
     end
   end
 
-  def destroy
-    @recipe = current_user.recipes.find(params[:id])
+  def destroy #カクテル削除
     @recipe.destroy
     redirect_to my_recipes_recipes_path, notice: 'カクテルが削除されました'
   end
 
-  def favorites
+  def favorites #お気に入り機能
     @favorite_recipes = current_user.favorite_recipes
   end
 
-  def suggest
-  end
+  def suggest; end #OpenAI APIを使ったカクテル提案フォーム
 
-  def generate_suggestion
-    base = params[:base]
-    taste = params[:taste]
-
+  def generate_suggestion #OpenAI APIを使ったカクテル提案
     service = OpenaiService.new
-    @suggestion = service.suggest_cocktail(base, taste)
+    @suggestion = service.suggest_cocktail(params[:base], params[:taste])
 
     respond_to do |format|
       format.turbo_stream
@@ -123,7 +104,12 @@ class RecipesController < ApplicationController
   end
 
   def correct_user
-    @recipe = current_user.recipes.find_by(id: params[:id])
-    redirect_to recipes_path, alert: '権限がありません。' if @recipe.nil?
+    redirect_to recipes_path, alert: '権限がありません。' unless current_user.recipes.exists?(id: params[:id])
+  end
+
+  def load_form_collections
+    @base_liquors = BaseLiquor.all
+    @difficulties = Difficulty.all
+    @ingredients = Ingredient.all
   end
 end

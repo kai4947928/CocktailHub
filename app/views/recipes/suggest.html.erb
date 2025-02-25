@@ -1,18 +1,18 @@
 <h1>アレンジカクテルを提案</h1>
 
-<%= form_with url: generate_suggestion_recipes_path, method: :post, data: { turbo_frame: "suggestion_frame" } do |f| %>
-  <div>
-    <%= f.label :base, "ベースの酒" %><br>
-    <%= f.text_field :base, placeholder: "例: ラム、ジン", required: true %>
+<%= form_with url: generate_suggestion_recipes_path, method: :post, data: { turbo_frame: "suggestion_frame" }, html: { class: "bg-light p-4 rounded shadow-sm" } do |f| %>
+  <div class="mb-3">
+    <%= f.label :base, "ベースの酒", class: "form-label fw-bold text-secondary" %>
+    <%= f.text_field :base, placeholder: "例: ラム、ジン", required: true, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :taste, "味の好み", class: "form-label fw-bold text-secondary" %>
+    <%= f.text_field :taste, placeholder: "例: 甘め、さっぱり", required: true, class: "form-control" %>
   </div>
 
   <div>
-    <%= f.label :taste, "味の好み" %><br>
-    <%= f.text_field :taste, placeholder: "例: 甘め、さっぱり", required: true %>
-  </div>
-
-  <div>
-    <%= f.submit "提案する", class: "btn btn-success" %>
+    <%= f.submit "提案する", class: "btn btn-success w-100 shadow-sm" %>
   </div>
 <% end %>
 
