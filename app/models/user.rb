@@ -17,8 +17,17 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    User.find_or_create_by(email: data['email']) do |user|
-      user.password = Devise.friendly_token[0, 20]
-    end
+    user = User.find_by(email: data['email']) || User.find_or_initialize_by(provider: access_token.provider, uid: access_token.uid)
+
+    user.email = data['email']
+    user.name = data['name']
+    user.provider = access_token.provider
+    user.uid = access_token.uid
+    user.password ||= Devise.friendly_token[0, 20]
+
+    Rails.logger.debug "🛠 User Validation Errors: #{user.errors.full_messages}" unless user.valid?
+
+    user.save! # ここでエラー発生
+    user
   end
 end

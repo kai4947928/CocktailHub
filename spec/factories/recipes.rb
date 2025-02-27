@@ -1,22 +1,15 @@
 FactoryBot.define do
   factory :recipe do
     name { "モヒート" }
-    alcohol_strength { :weak }
-    procedure { "ミントとライムを潰してラムと混ぜる" }
-    association :user
-    association :difficulty
-    association :base_liquor
-    association :flavor
+    alcohol_strength { :weak } # アルコール強度（弱）
+    procedure { "Make a Mojito" } # 手順
+    official { false } # 公式投稿かどうか
+    category_list { ["original"] }
 
-    trait :with_category do
-      transient do
-        category_list { [] }
-      end
-
-      after(:create) do |recipe, evaluator|
-        recipe.category_list.add(evaluator.category_list) if evaluator.category_list
-        recipe.save
-      end
-    end
+    # 必要な関連データ
+    difficulty { create(:difficulty, name: "簡単") }
+    base_liquor { create(:base_liquor, name: "ラム") }
+    flavor { create(:flavor, name: "甘い") }
+    user { create(:user, email: "test@example.com", provider: "google_oauth2", uid: "123456789") }
   end
 end

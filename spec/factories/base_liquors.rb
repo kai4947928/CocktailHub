@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :base_liquor do
-    name { "Rum" }
+    name { "ラム" }
   end
 end

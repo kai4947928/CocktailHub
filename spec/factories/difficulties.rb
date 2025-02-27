@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :difficulty do
-    name { "Easy" }
+    name { "簡単" }
   end
 end

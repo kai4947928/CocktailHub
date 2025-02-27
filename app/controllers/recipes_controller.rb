@@ -8,9 +8,9 @@ class RecipesController < ApplicationController
     @q = Recipe.ransack(params[:q])
     base_query = @q.result.includes(:difficulty, :base_liquor).distinct
 
-    @official_recipes = base_query.tagged_with("公式").page(params[:official_page])
+    @official_recipes = base_query.tagged_with("公式").page(params[:page])
 
-    @post_recipes = base_query.tagged_with("投稿").where.not(id: Recipe.tagged_with("公式").select(:id)).page(params[:post_page])
+    @post_recipes = base_query.tagged_with("投稿").where.not(id: Recipe.tagged_with("公式").select(:id)).page(params[:page])
   end
 
   def autocomplete
@@ -45,14 +45,18 @@ class RecipesController < ApplicationController
   end
 
   def create #カクテル保存
-    @recipe = current_user.recipes.build(recipe_params)
-    load_form_collections
+    if user_signed_in?  # ログインしているか確認
+      @recipe = current_user.recipes.build(recipe_params)
+      load_form_collections
 
-    if @recipe.save
-      redirect_to @recipe, notice: "カクテルが投稿できました！"
+      if @recipe.save
+        redirect_to @recipe, notice: "カクテルが投稿できました！"
+      else
+        flash.now[:alert] = "カクテルの投稿に失敗しました。"
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash.now[:alert] = "カクテルの投稿に失敗しました。"
-      render :new, status: :unprocessable_entity
+      redirect_to new_user_session_path, alert: "ログインしてください。"  # 未ログインの場合はログインページへ
     end
   end
 
