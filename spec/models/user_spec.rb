@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
 
     it 'Google認証で新規ユーザーを作成する' do
       user = User.from_omniauth(auth)
-      expect(user).to be_persisted  # データベースに保存されているか
+      expect(user).to be_persisted
       expect(user.email).to eq('test@example.com')
       expect(user.name).to eq('Test User')
     end
@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
       )
 
       user = User.from_omniauth(auth)
-      expect(user.id).to eq(existing_user.id)  # 既存ユーザーのIDと同じか
+      expect(user.id).to eq(existing_user.id)
     end
   end
 end

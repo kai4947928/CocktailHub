@@ -15,19 +15,19 @@ RSpec.describe "Sessions", type: :request do
   describe "Google OAuth ログイン" do
     it "Google認証でログインできる" do
       get "/users/auth/google_oauth2/callback"
-      expect(response).to redirect_to(root_path) # リダイレクト先は適宜修正
+      expect(response).to redirect_to(root_path)
     end
 
     it "認証に失敗した場合、ログインできない" do
       OmniAuth.config.mock_auth[:google_oauth2] = :invalid_credentials
       get "/users/auth/google_oauth2/callback"
-      expect(response).to redirect_to(root_path) # login_path → new_session_path に修正
+      expect(response).to redirect_to(root_path)
     end
   end
 
   describe "ログアウト" do
     it "ログアウトできる" do
-      delete "/users/sign_out" # DELETE を POST に修正
+      delete "/users/sign_out"
       expect(response).to redirect_to(root_path)
     end
   end
