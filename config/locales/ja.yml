@@ -7,6 +7,17 @@ ja:
 
   activerecord:
     errors:
+      models:
+        recipe:
+          attributes:
+            difficulty:
+              required: "を選択してください"
+            base_liquor:
+              required: "を選択してください"
+            flavor:
+              required: "を選択してください"
+            name:
+              blank: "を入力してください"
       messages:
         record_invalid: "レコードが無効です"
 
@@ -16,5 +27,9 @@ ja:
           weak: "弱め(5%~15%)"
           medium: "普通(16%~25%)"
           strong: "強め(26%以上)"
+        difficulty: "難易度"
+        base_liquor: "ベースのお酒"
+        flavor: "フレーバー"
+        name: "カクテル名"
 
 

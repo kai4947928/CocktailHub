@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto text-nowrap">
         <li class="nav-item">
-          <%= link_to 'TOP', root_path, class: 'nav-link text-light', style: 'transition: color 0.3s;', onmouseover: "this.style.color='#ffd700';", onmouseout: "this.style.color='#ffffff';" %>
+          <%= link_to 'TOP', recipes_path, class: 'nav-link text-light', style: 'transition: color 0.3s;', onmouseover: "this.style.color='#ffd700';", onmouseout: "this.style.color='#ffffff';" %>
         </li>
         <li class="nav-item">
           <%= link_to "アプリの使い方", how_to_use_path, class: 'nav-link text-light', style: 'transition: color 0.3s;', onmouseover: "this.style.color='#ffd700';", onmouseout: "this.style.color='#ffffff';" %>
@@ -19,7 +19,7 @@
             <button class="btn dropdown-toggle text-light" style="background-color: transparent; border: none;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               マイページ
             </button>
-            <ul class="dropdown-menu dropdown-menu-end" style="background-color: rgba(29, 42, 58, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+            <ul class="dropdown-menu dropdown-menu-end" style="background-color: rgba(29, 42, 58, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;" >
               <li>
                 <%= link_to '自分のカクテル一覧', my_recipes_recipes_path, class: 'dropdown-item text-light', style: 'transition: background 0.3s;', onmouseover: "this.style.backgroundColor='rgba(255, 255, 255, 0.1)';", onmouseout: "this.style.backgroundColor='transparent';" %>
               </li>

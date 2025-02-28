@@ -1,7 +1,7 @@
 <%= form_with(model: recipe, local: true, class: "container mt-5") do |form| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h4><%= pluralize(recipe.errors.count, "error") %> が発生しました:</h4>
+      <h4><%= pluralize(recipe.errors.count, "件のエラー") %> が発生しました</h4>
       <ul>
         <% recipe.errors.full_messages.each do |message| %>
           <li><%= message %></li>

@@ -30,3 +30,11 @@
   transform: scale(1.05);      // 少し拡大
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  // 影を追加
 }
+
+.alert {
+  font-size: 16px; /* 文字サイズを調整 */
+  padding: 5px 10px; /* 内側の余白を小さくしてコンパクトに */
+  margin: 10px 0; /* 上下の余白を少しだけ */
+  max-width: fit-content; /* アラートが文字の幅に合わせてサイズを調整 */
+  border-radius: 8px; /* 角を丸く */
+}
