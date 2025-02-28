@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
@@ -27,7 +25,7 @@ class User < ApplicationRecord
 
     Rails.logger.debug "🛠 User Validation Errors: #{user.errors.full_messages}" unless user.valid?
 
-    user.save! # ここでエラー発生
+    user.save!
     user
   end
 end

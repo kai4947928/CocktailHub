@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Recipe < ApplicationRecord
-  acts_as_taggable_on :category #タグ機能
+  acts_as_taggable_on :category
 
   before_create :add_default_tag
 
@@ -22,11 +22,11 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true, reject_if: :quantity_blank?
 
-  def quantity_blank?(attributes) #フォームがからの場合は、無視
+  def quantity_blank?(attributes)
     attributes['quantity'].blank?
   end
 
-  def self.ransackable_attributes(_auth_object = nil) #検索できるもの
+  def self.ransackable_attributes(_auth_object = nil)
     %w[name base_liquor_id difficulty_id]
   end
 
@@ -34,7 +34,7 @@ class Recipe < ApplicationRecord
 
   private
 
-  def add_default_tag #デフォルトタグを追加(公式タグがない時場合は、投稿タグをつける)
+  def add_default_tag
     unless category_list.include?("公式")
       self.category_list.add("投稿") unless category_list.include?("投稿")
     end

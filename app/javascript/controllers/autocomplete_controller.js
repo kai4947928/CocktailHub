@@ -2,7 +2,7 @@ import { Autocomplete } from "stimulus-autocomplete"
 
 export default class extends Autocomplete {
   connect() {
-    super.connect() // 基本のautocompleteの設定を呼び出す
+    super.connect()
     this.element.addEventListener("click", this.selectItem.bind(this))
   }
 
@@ -10,9 +10,9 @@ export default class extends Autocomplete {
     console.log("Item clicked", event.target)
     if (event.target.matches(".autocomplete-item")) {
       const item = event.target
-      this.inputTarget.value = item.dataset.name  // フォームに名前をセット
-      this.hiddenTarget.value = item.dataset.id   // 隠しフィールドにIDをセット
-      this.resultsTarget.innerHTML = ""  // 候補リストを非表示
+      this.inputTarget.value = item.dataset.name
+      this.hiddenTarget.value = item.dataset.id
+      this.resultsTarget.innerHTML = ""
     }
   }
 }

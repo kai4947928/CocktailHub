@@ -1,12 +1,8 @@
 <div class="container mt-5">
-  <!-- ヘッダー部分 -->
   <div class="row mb-4">
     <div class="col text-center">
       <div class="d-flex justify-content-between align-items-center">
-        <!-- タイトル -->
         <h1 class="display-4 fw-bold text-primary"><%= @recipe.name %></h1>
-
-        <!-- お気に入りボタン -->
         <% if user_signed_in? %>
           <% if current_user.favorite_recipes.include?(@recipe) %>
             <%= button_to recipe_favorite_path(@recipe, current_user.favorites.find_by(recipe: @recipe)),
@@ -24,51 +20,62 @@
     </div>
   </div>
 
-  <!-- メイン情報と画像 -->
-  <div class="row align-items-center">
-    <!-- メイン情報 -->
-    <div class="col-md-6">
-      <h3 class="fw-bold text-secondary">レシピ情報</h3>
-      <ul class="list-unstyled text-muted">
-        <li><strong>アルコール度数:</strong> <%= t("activerecord.attributes.recipe.alcohol_strength.#{@recipe.alcohol_strength}") %></li>
-        <li><strong>難易度:</strong> <%= @recipe.difficulty.name %></li>
-        <li><strong>ベース:</strong> <%= @recipe.base_liquor.name %></li>
-      </ul>
-
-      <h4 class="fw-bold text-secondary mt-4">材料</h4>
-      <ul class="text-muted">
-        <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-          <li>
-            <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>ml
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <!-- 画像 -->
-    <div class="col-md-6 text-center">
+  <div class="row mb-4">
+    <div class="col-md-4 text-center">
       <% if @recipe.image.attached? %>
         <%= image_tag @recipe.image.variant(resize_to_fill: [350, 350]), class: "rounded shadow-lg img-fluid" %>
       <% else %>
-        <p class="text-muted">画像がありません</p>
+        <%= image_tag 'default_cocktail-image4.jpg', size: "350x350", class: "rounded shadow-lg img-fluid" %>
       <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <h3 class="fw-bold text-secondary">レシピ情報</h3>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <ul class="list-unstyled text-muted">
+            <li><strong>アルコール度数:</strong> <%= t("activerecord.attributes.recipe.alcohol_strength.#{@recipe.alcohol_strength}") %></li>
+            <li><strong>難易度:</strong> <%= @recipe.difficulty.name %></li>
+            <li><strong>ベース:</strong> <%= @recipe.base_liquor.name %></li>
+          </ul>
+        </div>
+      </div>
+
+      <h4 class="fw-bold text-secondary mt-4">材料</h4>
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <ul class="text-muted">
+            <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+              <li>
+                <%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %>ml
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 手順とフレーバー -->
   <div class="row mt-4">
     <div class="col-md-12">
       <h4 class="fw-bold text-secondary">手順</h4>
-      <p class="text-muted"><%= @recipe.procedure %></p>
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <p class="text-muted"><%= @recipe.procedure %></p>
+        </div>
+      </div>
 
       <% if @recipe.flavor.present? %>
-        <h4 class="fw-bold text-secondary">フレーバー</h4>
-        <p class="text-muted"><%= @recipe.flavor.name %></p>
+        <h4 class="fw-bold text-secondary mt-4">フレーバー</h4>
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <p class="text-muted"><%= @recipe.flavor.name %></p>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
 
-  <!-- シェアボタン -->
   <div class="mt-4 text-center">
     <%= render "shared/share_buttons", recipe: @recipe %>
   </div>

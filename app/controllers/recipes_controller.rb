@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
 
-  def index #カクテル一覧(公式・投稿レシピを表示)
+  def index
     @q = Recipe.ransack(params[:q])
     base_query = @q.result.includes(:difficulty, :base_liquor).distinct
 
@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def show #カクテル詳細
+  def show
     @user = @recipe.user
     image_url = @recipe.image.attached? ? url_for(@recipe.image) : helpers.asset_url('default_ogp.png')
 
@@ -34,18 +34,18 @@ class RecipesController < ApplicationController
     )
   end
 
-  def edit #カクテル編集
+  def edit
     @ingredients = Ingredient.all
   end
 
-  def new #カクテル作成
+  def new
     @recipe = Recipe.new(alcohol_strength: nil)
     @recipe.recipe_ingredients.build
     load_form_collections
   end
 
-  def create #カクテル保存
-    if user_signed_in?  # ログインしているか確認
+  def create
+    if user_signed_in?
       @recipe = current_user.recipes.build(recipe_params)
       load_form_collections
 
@@ -56,15 +56,15 @@ class RecipesController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      redirect_to new_user_session_path, alert: "ログインしてください。"  # 未ログインの場合はログインページへ
+      redirect_to new_user_session_path, alert: "ログインしてください。"
     end
   end
 
-  def my_recipes #ユーザーの投稿したカクテル一覧
+  def my_recipes
     @recipes = current_user&.recipes || []
   end
 
-  def update #カクテル更新
+  def update
     @ingredients = Ingredient.all
 
     if @recipe.update(recipe_params)
@@ -75,20 +75,25 @@ class RecipesController < ApplicationController
     end
   end
 
-  def destroy #カクテル削除
+  def destroy
     @recipe.destroy
     redirect_to my_recipes_recipes_path, notice: 'カクテルが削除されました'
   end
 
-  def favorites #お気に入り機能
+  def favorites
     @favorite_recipes = current_user.favorite_recipes
   end
 
-  def suggest; end #OpenAI APIを使ったカクテル提案フォーム
+  def suggest
+    @suggestion = nil
+  end
 
-  def generate_suggestion #OpenAI APIを使ったカクテル提案
+  def generate_suggestion
+    base = params[:base]
+    taste = params[:taste]
+
     service = OpenaiService.new
-    @suggestion = service.suggest_cocktail(params[:base], params[:taste])
+    @suggestion = service.suggest_cocktail(base, taste)
 
     respond_to do |format|
       format.turbo_stream

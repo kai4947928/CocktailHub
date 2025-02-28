@@ -13,13 +13,11 @@
   <div class="card p-4 shadow border-0">
     <h2 class="mb-4 text-center" style="color: #1d2a3a;">カクテルの投稿フォーム</h2>
 
-    <!-- カクテル名 -->
     <div class="form-group mb-3">
       <%= form.label :name, "カクテル名", class: "form-label" %>
       <%= form.text_field :name, class: "form-control", placeholder: "カクテル名を入力" %>
     </div>
 
-    <!-- アルコール強さ -->
     <div class="form-group mb-3">
       <%= form.label :alcohol_strength, "アルコール強さ", class: "form-label" %>
       <%= form.select :alcohol_strength,
@@ -28,7 +26,6 @@
         class: "form-select" %>
     </div>
 
-    <!-- 難易度 -->
     <div class="form-group mb-3">
       <%= form.label :difficulty_id, "難易度", class: "form-label" %>
       <%= form.collection_select :difficulty_id, @difficulties, :id, :name,
@@ -36,13 +33,11 @@
         class: "form-select" %>
     </div>
 
-    <!-- 画像 -->
     <div class="form-group mb-3">
       <%= form.label :image, "画像", class: "form-label" %>
       <%= form.file_field :image, class: "form-control" %>
     </div>
 
-    <!-- フレーバー -->
     <div class="form-group mb-3">
       <%= form.label :flavor_id, "フレーバー", class: "form-label" %>
       <%= form.collection_select :flavor_id, Flavor.all, :id, :name,
@@ -50,7 +45,6 @@
         class: "form-select" %>
     </div>
 
-    <!-- ベースリキュール -->
     <div class="form-group mb-3">
       <%= form.label :base_liquor_id, "ベースリキュール", class: "form-label" %>
       <%= form.collection_select :base_liquor_id, @base_liquors, :id, :name,
@@ -74,13 +68,11 @@
       </div>
     </div>
 
-    <!-- 作り方 -->
     <div class="form-group mb-4">
       <%= form.label :procedure, "作り方", class: "form-label" %>
       <%= form.text_area :procedure, class: "form-control", rows: 5, placeholder: "作り方を記入してください" %>
     </div>
 
-    <!-- 投稿ボタン -->
     <div class="text-center">
       <%= form.submit "投稿する", class: "btn btn-primary btn-lg" %>
     </div>

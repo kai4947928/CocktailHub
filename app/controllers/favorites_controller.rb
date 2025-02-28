@@ -3,14 +3,14 @@
 class FavoritesController < ApplicationController
   before_action :set_recipe
 
-  def create #お気に入り追加
+  def create
     return redirect_to @recipe unless user_signed_in?
 
     current_user.favorite_recipes << @recipe
     respond_with_notice('お気に入り登録できました！')
   end
 
-  def destroy #お気に入り削除
+  def destroy
     return redirect_to @recipe unless user_signed_in?
 
     current_user.favorite_recipes.destroy(@recipe)
