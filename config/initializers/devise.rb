@@ -274,8 +274,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :google_oauth2, ENV.fetch("GOOGLE_CLIENT_ID"), ENV.fetch("GOOGLE_CLIENT_SECRET"), {
     scope: "userinfo.email, userinfo.profile",
-    prompt: "select_account",
-    redirect_uri: Rails.env.production? ? "https://www.cocktail-hub.com/auth/google_oauth2/callback" : "http://localhost:3000/users/auth/google_oauth2/callback"
+    prompt: "select_account"
   }
 
   # ==> Warden configuration
