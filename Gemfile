@@ -97,8 +97,6 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 gem 'bootstrap', '~> 5.3'
 
-gem 'rails_12factor', '~> 0.0.3'
-
 gem 'pg', '~> 1.1'
 
 gem 'kaminari', '~> 1.2'
