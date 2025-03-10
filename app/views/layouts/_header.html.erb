@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto text-nowrap">
         <li class="nav-item">
-          <%= link_to 'TOP', recipes_path, class: 'nav-link text-light', style: 'transition: color 0.3s;', onmouseover: "this.style.color='#ffd700';", onmouseout: "this.style.color='#ffffff';" %>
+          <%= link_to 'TOP', recipes_path, class: 'nav-link text-light' %>
         </li>
         <li class="nav-item">
-          <%= link_to "アレンジカクテルを提案", suggest_recipes_path, class: "nav-link text-light", style: "transition: color 0.3s;", onmouseover: "this.style.color='#ffd700';", onmouseout: "this.style.color='#ffffff';" %>
+          <%= link_to "アレンジカクテルを提案", suggest_recipes_path, class: "nav-link text-light" %>
         </li>
         <li class="nav-item">
-          <%= link_to "アプリの使い方", how_to_use_path, class: 'nav-link text-light', style: 'transition: color 0.3s;', onmouseover: "this.style.color='#ffd700';", onmouseout: "this.style.color='#ffffff';" %>
+          <%= link_to "アプリの使い方", how_to_use_path, class: 'nav-link text-light' %>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item dropdown">

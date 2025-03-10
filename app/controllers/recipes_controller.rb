@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @q = Recipe.ransack(params[:q])
+    @search_params = search_params
+    @q = Recipe.ransack(search_params)
     base_query = @q.result.includes(:difficulty, :base_liquor).distinct
 
     @official_recipes = base_query.tagged_with("公式").page(params[:page])
-
     @post_recipes = base_query.tagged_with("投稿").where.not(id: Recipe.tagged_with("公式").select(:id)).page(params[:page])
   end
 
   def autocomplete
-    query = params[:q] || ""
-    recipes = Recipe.where("name LIKE ?", "%#{query}%")
-    @recipes = recipes
+    query = params[:q].to_s.strip
+    @recipes = Recipe.where(Recipe.arel_table[:name].matches("%#{query}%"))
 
     respond_to do |format|
       format.html { render "autocomplete", layout: false }
-      format.json { render json: recipes.map { |recipe| { id: recipe.id, name: recipe.name } } }
+      format.json { render json: @recipes.select(:id, :name) }
     end
   end
 
@@ -45,18 +45,14 @@ class RecipesController < ApplicationController
   end
 
   def create
-    if user_signed_in?
-      @recipe = current_user.recipes.build(recipe_params)
-      load_form_collections
+    @recipe = current_user.recipes.build(recipe_params)
+    load_form_collections
 
-      if @recipe.save
-        redirect_to @recipe, notice: "カクテルが投稿できました！"
-      else
-        flash.now[:alert] = "カクテルの投稿に失敗しました。"
-        render :new, status: :unprocessable_entity
-      end
+    if @recipe.save
+      redirect_to @recipe, notice: "カクテルが投稿できました！"
     else
-      redirect_to new_user_session_path, alert: "ログインしてください。"
+      flash.now[:alert] = "カクテルの投稿に失敗しました。"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -107,13 +103,17 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  def search_params
+    params.fetch(:q, {}).permit(:name_cont, :base_liquor_id_eq, :difficulty_id_eq)
+  end
+
   def recipe_params
     params.require(:recipe).permit(:name, :image, :alcohol_strength, :flavor_id, :procedure, :difficulty_id, :base_liquor_id,
     recipe_ingredients_attributes: %i[ingredient_id quantity _destroy])
   end
 
   def correct_user
-    redirect_to recipes_path, alert: '権限がありません。' unless current_user.recipes.exists?(id: params[:id])
+    redirect_to recipes_path, alert: '権限がありません。' unless @recipe.user == current_user
   end
 
   def load_form_collections

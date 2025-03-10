@@ -21,7 +21,7 @@
     <% else %>
       <p class="text-dark" style="color: #1d2a3a;">カクテルが見つかりませんでした。</p>
     <% end %>
-    <%= paginate @official_recipes, theme: 'bootstrap-5', params: { q: params[:q], official_page: params[:official_page], post_page: params[:post_page] } %>
+    <%= paginate @official_recipes, theme: 'bootstrap-5', params: { q: @search_params, official_page: params[:official_page], post_page: params[:post_page] } %>
   </div>
 
   <div id="post" class="tab-pane fade">
@@ -35,6 +35,6 @@
     <% else %>
       <p class="text-dark" style="color: #1d2a3a;">投稿されたカクテルが見つかりませんでした。</p>
     <% end %>
-    <%= paginate @post_recipes, theme: 'bootstrap-5', params: { q: params[:q], official_page: params[:official_page], post_page: params[:post_page] } %>
+    <%= paginate @post_recipes, theme: 'bootstrap-5', params: { q: @search_params, official_page: params[:official_page], post_page: params[:post_page] } %>
   </div>
 </div>
