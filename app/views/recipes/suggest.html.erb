@@ -1,22 +1,74 @@
 <h1>アレンジカクテルを提案</h1>
 
-<%= form_with url: generate_suggestion_recipes_path, method: :post, data: { turbo_frame: "suggestion_frame", controller: "loading", action: "submit->loading#show" }, html: { class: "bg-light p-4 rounded shadow-sm" } do |f| %>
-  <div class="mb-3">
-    <%= f.label :base, "ベースの酒", class: "form-label fw-bold text-secondary" %>
-    <%= f.text_field :base, placeholder: "例: ラム、ジン", required: true, class: "form-control" %>
+<div class="position-relative" style="position: relative;">
+  <!-- ローディングアニメーション -->
+  <div id="loader" class="loader-overlay hidden">
+    <div class="whiskey-loader">
+      <div class="liquid"></div>
+      <div class="ice"></div>
+    </div>
+    <div class="loading-text">レシピ作成中...</div>
   </div>
 
-  <div class="mb-3">
-    <%= f.label :taste, "味の好み", class: "form-label fw-bold text-secondary" %>
-    <%= f.text_field :taste, placeholder: "例: 甘め、さっぱり", required: true, class: "form-control" %>
-  </div>
+  <%= form_with url: generate_suggestion_recipes_path, method: :post,
+  data: { turbo_frame: "suggestion_frame" },
+  html: { class: "bg-light p-4 rounded shadow-sm", id: "suggestion-form" } do |f| %>
+    <div class="mb-3">
+      <%= f.label :base, "ベースの酒", class: "form-label fw-bold text-secondary" %>
+      <%= f.text_field :base, placeholder: "例: ラム、ジン", required: true, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.submit "提案する", class: "btn btn-success w-100 shadow-sm" %>
-  </div>
-<% end %>
+    <div class="mb-3">
+      <%= f.label :taste, "味の好み", class: "form-label fw-bold text-secondary" %>
+      <%= f.text_field :taste, placeholder: "例: 甘め、さっぱり", required: true, class: "form-control" %>
+    </div>
 
-<%= turbo_frame_tag "suggestion_frame" do %>
-  <%= render "shared/loading" %>
-  <p>ここにカクテルの提案結果が表示されます。</p>
+    <div>
+      <%= f.submit "提案する", class: "btn btn-success w-100 shadow-sm" %>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "suggestion_frame" do %>
+    <p>ここにカクテルの提案結果が表示されます。</p>
+  <% end %>
+</div>
+
+<%= javascript_tag do %>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("suggestion-form");
+    const loader = document.getElementById("loader");
+
+    form.addEventListener("submit", (event) => {
+      // ローディングアニメーションを表示
+      loader.classList.remove("hidden");
+
+      // フォームの送信を防止（非同期で処理するため）
+      event.preventDefault();
+
+      // フォーム送信後に非同期でリクエストを送る
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+      })
+      .then(response => response.text())  // サーバーからのレスポンスをテキストとして取得
+      .then(data => {
+        // Turboフレームを手動で更新する
+        const frame = document.getElementById("suggestion_frame");
+        frame.innerHTML = data;  // サーバーからのレスポンスをフレーム内に挿入
+      })
+      .finally(() => {
+        // フォーム送信が完了した後にローディングアニメーションを非表示
+        loader.classList.add("hidden");
+      });
+    });
+
+    // Turboフレームの読み込みイベント
+    document.addEventListener("turbo:frame-load", (e) => {
+      console.log("turbo:frame-load event triggered", e.target.id);  // デバッグ用ログ
+
+      if (e.target.id === "suggestion_frame") {
+        loader.classList.add("hidden");  // 結果が表示されたらローディングを非表示に
+      }
+    });
+  });
 <% end %>

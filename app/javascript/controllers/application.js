@@ -4,6 +4,6 @@ import { Autocomplete } from "stimulus-autocomplete"
 const application = Application.start()
 application.register('autocomplete', Autocomplete)
 application.debug = false
-window.Stimulus   = application
+window.Stimulus = application;
 
 export { application }

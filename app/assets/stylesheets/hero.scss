@@ -7,7 +7,6 @@ body, html {
   font-family: Arial, sans-serif;
 }
 
-/* ヒーローセクション */
 .hero {
   background-image: url(asset-path('app-background-image.jpg'));
   background-size: cover;
@@ -64,7 +63,6 @@ body, html {
   transform: scale(1.1);
 }
 
-/* 使い方セクション */
 .how-to {
   padding: 50px 20px;
   text-align: center;
