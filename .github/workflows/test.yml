@@ -10,24 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Rubyのセットアップ
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.6'
 
-      # 3. Bundler をインストール
       - name: Install Bundler
         run: gem install bundler
 
-      # 4. 依存関係をインストール
+      - name: Install libvips
+        run: sudo apt-get update && sudo apt-get install -y libvips42
+
       - name: Install dependencies
         run: bundle install
 
-      # 5. RSpec を実行
       - name: Run RSpec tests
         run: bundle exec rspec
