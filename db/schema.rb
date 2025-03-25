@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_04_015425) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_21_025058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,8 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_04_015425) do
     t.string "name"
     t.integer "alcohol_strength", default: 0, null: false
     t.text "procedure"
-    t.boolean "official"
-    t.bigint "parent_recipe_id"
     t.integer "difficulty_id"
     t.integer "base_liquor_id"
     t.integer "user_id"
@@ -133,7 +131,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_04_015425) do
     t.string "name"
     t.string "uid"
     t.string "provider"
-    t.date "birthday"
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -149,6 +146,5 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_04_015425) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
-  add_foreign_key "recipes", "recipes", column: "parent_recipe_id"
   add_foreign_key "taggings", "tags"
 end
