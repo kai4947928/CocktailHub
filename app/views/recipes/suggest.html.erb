@@ -39,36 +39,27 @@
     const loader = document.getElementById("loader");
 
     form.addEventListener("submit", (event) => {
-      // ローディングアニメーションを表示
       loader.classList.remove("hidden");
-
-      // フォームの送信を防止（非同期で処理するため）
       event.preventDefault();
 
-      // フォーム送信後に非同期でリクエストを送る
       fetch(form.action, {
         method: form.method,
         body: new FormData(form),
       })
-      .then(response => response.text())  // サーバーからのレスポンスをテキストとして取得
+      .then(response => response.text())
       .then(data => {
-        // Turboフレームを手動で更新する
-        const frame = document.getElementById("suggestion_frame");
-        frame.innerHTML = data;  // サーバーからのレスポンスをフレーム内に挿入
+        document.getElementById("suggestion_frame").innerHTML = data;
       })
       .finally(() => {
-        // フォーム送信が完了した後にローディングアニメーションを非表示
         loader.classList.add("hidden");
       });
     });
 
-    // Turboフレームの読み込みイベント
     document.addEventListener("turbo:frame-load", (e) => {
-      console.log("turbo:frame-load event triggered", e.target.id);  // デバッグ用ログ
-
       if (e.target.id === "suggestion_frame") {
-        loader.classList.add("hidden");  // 結果が表示されたらローディングを非表示に
+        loader.classList.add("hidden");
       }
     });
   });
 <% end %>
+
